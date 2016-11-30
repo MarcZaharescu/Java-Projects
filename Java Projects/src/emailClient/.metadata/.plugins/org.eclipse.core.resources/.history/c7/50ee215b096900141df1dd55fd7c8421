@@ -1,0 +1,45 @@
+
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+import javaMailExample.IMAPClient;
+
+/**
+ *  DictionaryComponent class which implements Jpanel
+ *  
+ * @author mxz301
+ *
+ */
+public class MailComponent extends JPanel
+{
+	
+	
+
+	public MailComponent(IMAPClient data)
+	{
+		super();
+		
+		// make model
+		MailModel model = new MailModel(data);
+		
+		// make board view
+		MailView board = new MailView(model);
+		
+		// make view observe the model
+		model.addObserver(board);
+		
+		//make button panel
+		
+		
+		// set layout
+		setLayout( new BorderLayout() );
+		
+		
+		// put board view in center
+		add(board, BorderLayout.CENTER);
+		// put button panel  in south
+		add(board.getPanel1(), BorderLayout.SOUTH);
+		
+		
+	}
+}

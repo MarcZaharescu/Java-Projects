@@ -1,0 +1,76 @@
+package email;
+
+
+
+import java.io.IOException;
+import java.util.Properties;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Controller
+ */
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	public String username;
+	public String password;
+	private Properties prop;
+	
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+//			throws ServletException, IOException {
+//		//response.sendRedirect("FirstLogin.jsp");
+//		
+//	
+//	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		username = request.getParameter("element_1");
+		System.out.println("Login attempted : ");
+		System.out.println(username);
+		password = request.getParameter("element_2");
+		System.out.println(password);
+		
+	
+		username="zaharescumarc10@gmail.com";
+	    password="zaharescu10";
+		Cookie cookieUsername = new Cookie("username", username);
+		Cookie cookiePassword = new Cookie("password", password);
+		
+		response.addCookie(cookieUsername);
+		response.addCookie(cookiePassword);
+		
+		Model imapClient = new Model();
+		prop=imapClient.setConnection(username,password);
+		if(imapClient.startSession(prop)){
+			response.sendRedirect("LoginSuccessfully.jsp");
+			System.out.println("redirecting to login success page");
+			
+		}else	{
+			response.sendRedirect("LoginUnSuccessfully.jsp");
+			System.out.println("redirecting to login fail page");
+		}
+		
+	}
+
+}

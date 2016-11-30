@@ -1,0 +1,45 @@
+package gui;
+
+import javax.swing.JPanel;
+
+import java.awt.BorderLayout;
+
+/**
+ *  DictionaryComponent class which implements Jpanel
+ *  
+ * @author mxz301
+ *
+ */
+public class DataBaseComponent extends JPanel
+{
+	
+	private static final long serialVersionUID = 1L;
+
+	public DataBaseComponent(Exercise2 data)
+	{
+		super();
+		
+		// make model
+		DataBaseModel model = new DataBaseModel(data);
+		
+		// make board view
+		BoardView board = new BoardView(model);
+		
+		// make view observe the model
+		model.addObserver(board);
+		
+		//make button panel
+		
+		
+		// set layout
+		setLayout( new BorderLayout() );
+		
+		
+		// put board view in center
+		add(board, BorderLayout.CENTER);
+		// put button panel  in south
+		add(board.getPanel1(), BorderLayout.SOUTH);
+		
+		
+	}
+}

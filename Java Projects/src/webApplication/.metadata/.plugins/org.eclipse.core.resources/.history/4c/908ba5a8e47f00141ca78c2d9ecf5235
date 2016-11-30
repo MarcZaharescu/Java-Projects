@@ -1,0 +1,9 @@
+package email;
+
+public class LogOutController {
+
+	
+	public void Logout()	{
+		
+	}
+}

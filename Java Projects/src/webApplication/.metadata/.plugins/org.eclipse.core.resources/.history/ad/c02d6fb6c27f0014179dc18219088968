@@ -1,0 +1,64 @@
+//package email;
+//import java.util.Properties;
+//
+//import javax.mail.Folder;
+//import javax.mail.Message;
+//import javax.mail.MessagingException;
+//import javax.mail.Session;
+//import javax.mail.Store;
+//import com.sun.mail.imap.IMAPFolder;
+//
+//public class IMAPClient {
+//	private static String username;
+//	private static String password;
+//	private static Store store;
+//	private static Properties properties;
+//	
+//	public IMAPClient(String username, String password)	{
+//		this.username = username;
+//		this.password = password;
+//	}
+//	
+//	public boolean connectIMAP()	{
+//		properties = System.getProperties();
+//		properties.setProperty("mail.store.protocol", "imaps");
+//		properties.setProperty("mail.user", username);
+//		properties.setProperty("mail.password", password);
+//		Session session = Session.getDefaultInstance(properties);
+//		try {
+//			store = session.getStore("imaps");
+//			store.connect("imap.gmail.com", username, password);
+//			return true;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//	}
+//	
+//	public IMAPFolder getFolder(String foldername){
+//		try {
+//			return (IMAPFolder) store.getFolder(foldername);
+//		}	catch(MessagingException e)	{
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
+//
+//	public Message[] getMessages(String foldername)	{
+//		IMAPFolder folder = getFolder(foldername);
+//		try {
+//			if(!folder.isOpen())	{
+//				folder.open(Folder.READ_WRITE);
+//			}
+//			Message messages[] = folder.getMessages();
+//			return messages;
+//			
+//		}	catch(Exception e)	{
+//			e.printStackTrace();
+//			return null;
+//		}
+//	}
+//	
+//	
+//	
+//}

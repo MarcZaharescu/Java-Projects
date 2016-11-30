@@ -1,0 +1,138 @@
+package email;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.Properties;
+
+public class ModelDataBase {
+	
+	
+	
+	
+	private static String firstName;
+	private static String familyName;
+	private static String emailAdress;
+
+	public static Connection setUpConnection(String value[]) throws SQLException, ClassNotFoundException {
+ System.out.println("-------------------------------------------Connecting to DataBase-------------------------------------");
+		System.out.println(value[1]);
+		System.out.println(value[0]);
+//		System.setProperty("jdbc.drivers", "org.postgresql.Driver");
+////		String dbName = "jdbc:postgresql://dbteach2/cs.bham.ac.uk/" + value[1];
+//		Connection dbConn = null; 
+//
+//		try {
+//			dbConn = DriverManager.getConnection(dbName, value[1], value[0]);
+//		} catch (SQLException e) {
+//
+//			e.printStackTrace();
+//		}
+		
+		Connection conn = null; 
+		Properties connectionProps = new Properties();
+		connectionProps.put("user", value[1]);
+		connectionProps.put("password", value[0]);
+
+		String database= "jdbc:postgresql://dbteach2.cs.bham.ac.uk/"+value[1];
+		
+		Class.forName("org.postgresql.Driver");
+		conn = DriverManager.getConnection(database, connectionProps);
+		
+		System.out.println("Connected to the database");
+		
+		return conn;
+	}
+	
+public static void createTables(Connection dbConn) throws SQLException{
+	PreparedStatement DropTables = dbConn
+			.prepareStatement("DROP TABLE IF EXISTS EmailAdress ;");
+
+	String EmailAdress = "CREATE TABLE EmailAdress ( firstname  varchar(20) NOT NULL, familyName varchar(20) NOT NULL, emailadress  varchar(20) NOT NULL)  ;";
+	DropTables.execute();
+	System.out.println("Tables Droped!");
+	PreparedStatement CreateTables = dbConn
+			.prepareStatement(EmailAdress);
+	CreateTables.execute();
+	System.out.println("Tables Created!");
+
+
+}
+
+public static void addDetails(String first, String second, String email, Connection dbConn) throws SQLException
+{
+firstName= first;
+familyName=second;
+emailAdress=email;
+
+PreparedStatement insert = dbConn
+.prepareStatement("INSERT into EmailAdress VALUES(?,?,?)");
+
+// Input other values
+insert.setString(1, firstName);
+insert.setString(2, familyName);
+insert.setString(3, emailAdress);
+
+
+// execute the update
+
+insert.executeUpdate();
+
+
+}
+
+public static void searchDetails(String first, String second, String email, Connection dbConn) throws SQLException
+{
+	
+	PreparedStatement InsertQuery2 = dbConn
+			.prepareStatement("SELECT firstname, familyName, emailadress  FROM EmailAdress WHERE firstname = "
+					+ first +"AND familyName =" + second +"AND emailadress =" + email);
+	InsertQuery2.setFetchSize(50);
+	ResultSet rs1 = InsertQuery2.executeQuery();
+
+	while (rs1.next()) {
+		int moduleID = rs1.getInt("moduleID");
+		int year = rs1.getInt("year");
+		int typeID = rs1.getInt("typeID");
+
+	
+}
+
+
+	public static String[] ReadUserDetails() {
+		 System.out.println("-------------------------------------------Readig the user details------------------------------------");
+		String[] key = new String[2];
+		String[] value = new String[2];
+		int i = 0;
+		int j = 0;
+
+		try {
+			File file = new File("/src/userDetails");
+			FileInputStream fileInput = new FileInputStream(file);
+			Properties properties = new Properties();
+			properties.load(fileInput);
+			fileInput.close();
+
+			Enumeration<Object> enuKeys = properties.keys();
+			while (enuKeys.hasMoreElements()) {
+				key[i] = (String) enuKeys.nextElement();
+				value[j] = properties.getProperty(key[i]);
+
+				i++;
+				j++;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return value;
+	}
+
+}

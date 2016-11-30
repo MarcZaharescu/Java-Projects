@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="13" passed="13">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="10203" started-at="2015-03-22T17:42:34Z" finished-at="2015-03-22T17:42:45Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="10203" started-at="2015-03-22T17:42:34Z" finished-at="2015-03-22T17:42:45Z">
+      <class name="test.WeaponTest">
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="1018" started-at="2015-03-22T17:42:34Z" finished-at="2015-03-22T17:42:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="teleport()[pri:0, instance:test.WeaponTest@50675690]" name="teleport" duration-ms="15" started-at="2015-03-22T17:42:36Z" finished-at="2015-03-22T17:42:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teleport -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="519" started-at="2015-03-22T17:42:36Z" finished-at="2015-03-22T17:42:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testBazooka()[pri:0, instance:test.WeaponTest@50675690]" name="testBazooka" duration-ms="25" started-at="2015-03-22T17:42:36Z" finished-at="2015-03-22T17:42:36Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testBazooka -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="514" started-at="2015-03-22T17:42:36Z" finished-at="2015-03-22T17:42:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testEnrage()[pri:0, instance:test.WeaponTest@50675690]" name="testEnrage" duration-ms="2" started-at="2015-03-22T17:42:37Z" finished-at="2015-03-22T17:42:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testEnrage -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="518" started-at="2015-03-22T17:42:37Z" finished-at="2015-03-22T17:42:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testFireMine()[pri:0, instance:test.WeaponTest@50675690]" name="testFireMine" duration-ms="2858" started-at="2015-03-22T17:42:37Z" finished-at="2015-03-22T17:42:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFireMine -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="567" started-at="2015-03-22T17:42:40Z" finished-at="2015-03-22T17:42:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testFireWall()[pri:0, instance:test.WeaponTest@50675690]" name="testFireWall" duration-ms="3" started-at="2015-03-22T17:42:41Z" finished-at="2015-03-22T17:42:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testFireWall -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="482" started-at="2015-03-22T17:42:41Z" finished-at="2015-03-22T17:42:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testHealingBuff()[pri:0, instance:test.WeaponTest@50675690]" name="testHealingBuff" duration-ms="19" started-at="2015-03-22T17:42:41Z" finished-at="2015-03-22T17:42:41Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testHealingBuff -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="495" started-at="2015-03-22T17:42:41Z" finished-at="2015-03-22T17:42:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testLazer()[pri:0, instance:test.WeaponTest@50675690]" name="testLazer" duration-ms="2" started-at="2015-03-22T17:42:42Z" finished-at="2015-03-22T17:42:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLazer -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="491" started-at="2015-03-22T17:42:42Z" finished-at="2015-03-22T17:42:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testLazerEX()[pri:0, instance:test.WeaponTest@50675690]" name="testLazerEX" duration-ms="4" started-at="2015-03-22T17:42:42Z" finished-at="2015-03-22T17:42:42Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testLazerEX -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="486" started-at="2015-03-22T17:42:42Z" finished-at="2015-03-22T17:42:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testMediGun()[pri:0, instance:test.WeaponTest@50675690]" name="testMediGun" duration-ms="1" started-at="2015-03-22T17:42:43Z" finished-at="2015-03-22T17:42:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testMediGun -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="488" started-at="2015-03-22T17:42:43Z" finished-at="2015-03-22T17:42:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testNuclearBlast()[pri:0, instance:test.WeaponTest@50675690]" name="testNuclearBlast" duration-ms="209" started-at="2015-03-22T17:42:43Z" finished-at="2015-03-22T17:42:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNuclearBlast -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="493" started-at="2015-03-22T17:42:43Z" finished-at="2015-03-22T17:42:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testPoisonDart()[pri:0, instance:test.WeaponTest@50675690]" name="testPoisonDart" duration-ms="19" started-at="2015-03-22T17:42:44Z" finished-at="2015-03-22T17:42:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testPoisonDart -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="487" started-at="2015-03-22T17:42:44Z" finished-at="2015-03-22T17:42:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testRocket()[pri:0, instance:test.WeaponTest@50675690]" name="testRocket" duration-ms="3" started-at="2015-03-22T17:42:44Z" finished-at="2015-03-22T17:42:44Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testRocket -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:test.WeaponTest@50675690]" name="beforeMethod" is-config="true" duration-ms="463" started-at="2015-03-22T17:42:44Z" finished-at="2015-03-22T17:42:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="testShield()[pri:0, instance:test.WeaponTest@50675690]" name="testShield" duration-ms="2" started-at="2015-03-22T17:42:45Z" finished-at="2015-03-22T17:42:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testShield -->
+      </class> <!-- test.WeaponTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

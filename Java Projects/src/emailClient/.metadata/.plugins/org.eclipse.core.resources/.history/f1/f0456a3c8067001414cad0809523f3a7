@@ -1,0 +1,34 @@
+package javaNIONetworkExamples;
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
+
+public class SocketChannelReadExample {
+	
+	public static void main(String[] args) throws IOException {
+
+	   	System.out.println("Receiver Start");
+
+    	SocketChannel sChannel = SocketChannel.open();
+    	sChannel.configureBlocking(true);
+    	ByteBuffer buffer = ByteBuffer.allocate(8192);
+    	if (sChannel.connect(new InetSocketAddress("localhost", 2345))) {
+    	    
+    	    while (sChannel.read(buffer) != -1) {
+    	      // flip the buffer to switch the ByteBuffer from "reading" (putting) to "writing" (getting)
+    	      buffer.flip();
+    	      // Get data from buffer
+    	      String Str = new String(buffer.array());
+    	      System.out.println("String is: '" + Str + "'");
+    	      buffer.clear();
+    	    }
+    		
+    		
+    	}
+
+    	System.out.println("End Receiver");	
+    	sChannel.close();
+	}
+}

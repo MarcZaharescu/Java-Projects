@@ -1,0 +1,48 @@
+import java.awt.EventQueue;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
+
+public class FilePicker {
+
+	private JFrame frame;
+	private	JFileChooser filePicker;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FilePicker window = new FilePicker();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public FilePicker() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		 filePicker = new JFileChooser("Browse...");
+		 filePicker.setBounds(0, 308, 278, 101);
+		 frame.getContentPane().add(filePicker);
+		 frame.setVisible(true);
+	}
+
+}

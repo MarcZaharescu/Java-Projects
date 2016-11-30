@@ -1,0 +1,130 @@
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import com.sun.mail.imap.IMAPFolder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.Properties;
+import javaMailExample.IMAPClient;
+import java.awt.Font;
+
+/**
+ * @author mxz301
+ *
+ */
+/**
+ * @author mxz301
+ *
+ */
+public class Interface {
+
+	private JFrame frame;
+	private String username;
+	protected static Properties prop;
+	private JButton btnButtonLogin;
+	protected IMAPFolder folder;
+	protected GUI gui;
+	private JTextField usernameField;
+	private JLabel lblMailClient;
+	public String password;
+
+	/**
+	 * Launches the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Interface window = new Interface();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Creates the application.
+	 */
+	public Interface() {
+		initialize();
+	}
+
+	/**
+	 * Initialises the contents of the frame.
+	 */
+
+	private void initialize() {
+
+		// creates a new frames
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+
+		// creates a new user name labels
+		JLabel lblUsername = new JLabel("username:");
+		lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblUsername.setBounds(20, 105, 101, 24);
+		// adds the user name label to the frame
+		frame.getContentPane().add(lblUsername);
+
+		// creates user name JText field
+		usernameField = new JTextField();
+		usernameField.setBounds(131, 102, 218, 34);
+		// adds the user name field to the frame
+		frame.getContentPane().add(usernameField);
+		usernameField.setColumns(10);
+
+		// add login button to the frame
+		frame.getContentPane().add(getButtonLogin());
+
+		// creates a new Mail CLient JLabel and adds it ot the frame
+		lblMailClient = new JLabel("MAIL CLIENT");
+		lblMailClient.setFont(new Font("Trebuchet MS", Font.BOLD, 42));
+		lblMailClient.setBounds(75, 11, 306, 54);
+		frame.getContentPane().add(lblMailClient);
+	}
+
+	/**
+	 * Initialises the Log In Button
+	 * 
+	 * @return a the jButton
+	 */
+	private JButton getButtonLogin() {
+		if (btnButtonLogin == null) {
+			btnButtonLogin = new JButton("log in");
+			btnButtonLogin.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			btnButtonLogin.setBounds(131, 165, 218, 54);
+
+			// sets up the connection by getting the user name and password data
+			// from the IMAP Client
+			btnButtonLogin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					// gets the user name nad password
+					//username = usernameField.getText();
+					username="zaharescumarc@gmail.com"
+					password = IMAPClient.getPassword();
+					// initialises the Properties prop
+					prop = IMAPClient.setConnection(username);
+					// creates a new instance of the GUI class
+					gui = new GUI();
+				}
+			});
+		}
+		return btnButtonLogin;
+	}
+
+	/**
+	 * @return the Properties prop
+	 */
+	public static Properties getProp() {
+
+		return prop;
+
+	}
+}

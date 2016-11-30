@@ -1,0 +1,76 @@
+package email;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ControllerEmail that sends an email to a selected user
+ */
+@WebServlet("/ControllerEmail")
+public class ControllerEmail extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	public SMTPMail smtpMail;
+	private String toField;
+	private String ccField;
+	private String subjectField;
+	private String contentField;
+	private String username;
+	private String password;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ControllerEmail() {
+        super();
+   
+    }
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		
+		if(request.getParameter("button1")!=null)
+		{
+			toField=request.getParameter("toField");
+			
+			ccField=request.getParameter("ccField");
+			subjectField=request.getParameter("subjectField");
+			contentField=request.getParameter("contentField");
+	
+			
+			try {
+				Model.sendMessage(ccField ,toField,subjectField,contentField);
+				Model.closeFolderAndStore();
+				PrintWriter out = response.getWriter();
+				out.println("Email Sent1! ");   
+		        RequestDispatcher rd=request.getRequestDispatcher("/DataBase.jsp");
+		        
+		        rd.include(request, response); 
+				
+			} catch (AddressException e) {
+				System.out.println("Email failed");
+			} catch (MessagingException e) {
+				System.out.println("Email failed");
+			}
+			
+		}
+		if(request.getParameter("button2")!=null)
+		{
+			PrintWriter out = response.getWriter();
+			out.println("Logged out! ");   
+	        RequestDispatcher rd=request.getRequestDispatcher("/Login.jsp");
+	        rd.include(request, response);  
+		}
+	}
+
+}

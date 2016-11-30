@@ -1,0 +1,68 @@
+
+import java.awt.event.*;
+
+import javax.mail.MessagingException;
+
+
+/**
+ * ButtonListener class, implements the ActionListener
+ * @author mxz301
+ *
+ */
+public class ButtonListener implements ActionListener {
+	private MailModel model;
+
+	private String text;
+	private int index;
+	private StringBuffer s = new StringBuffer();;
+
+	/**
+	 *  The Constructor, initialises the field variables
+	 * @param model a DictionaryModel
+	 * @param i		a integer i, which represents the index of the button
+	 * @param string	, a String string which contains the information on the button
+	 */
+	public ButtonListener(MailModel model, int i, String string) {
+		this.model = model;
+		this.text = string;
+		this.index = i;
+
+	}
+
+	/**
+	 *  actionPerformed() method
+	 *  depending on the index received through the constructor (the button which is pressed), it calls different methods() from the DictionaryModel class
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (index == 1) {
+			model.remove();	
+			model.update(); 
+		}
+		
+		if(index ==2)
+		{
+			try {
+				model.mailSubjects();
+			} catch (MessagingException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		if(index==5)
+		{
+			  System.exit(0);
+			
+		}
+		
+
+		else {
+			s = new StringBuffer();			
+											
+			s.append(text);
+			
+		}
+			
+	}
+}

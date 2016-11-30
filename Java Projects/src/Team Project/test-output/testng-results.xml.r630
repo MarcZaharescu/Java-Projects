@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="25" passed="25">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="182573" started-at="2015-03-21T19:50:37Z" finished-at="2015-03-21T19:53:40Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="182573" started-at="2015-03-21T19:50:37Z" finished-at="2015-03-21T19:53:40Z">
+      <class name="test.EngineTest">
+        <test-method status="PASS" signature="setUP()[pri:0, instance:test.EngineTest@6cc7b4de]" name="setUP" is-config="true" duration-ms="1023" started-at="2015-03-21T19:50:37Z" finished-at="2015-03-21T19:50:38Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUP -->
+        <test-method status="PASS" signature="AnimateCrateTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="AnimateCrateTest" duration-ms="28589" started-at="2015-03-21T19:50:38Z" finished-at="2015-03-21T19:51:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AnimateCrateTest -->
+        <test-method status="PASS" signature="BazookaAndWallShootTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="BazookaAndWallShootTest" duration-ms="38475" started-at="2015-03-21T19:51:07Z" finished-at="2015-03-21T19:51:45Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BazookaAndWallShootTest -->
+        <test-method status="PASS" signature="DirtCircleTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="DirtCircleTest" duration-ms="4022" started-at="2015-03-21T19:51:45Z" finished-at="2015-03-21T19:51:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- DirtCircleTest -->
+        <test-method status="PASS" signature="EnrageTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="EnrageTest" duration-ms="1421" started-at="2015-03-21T19:51:49Z" finished-at="2015-03-21T19:51:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EnrageTest -->
+        <test-method status="PASS" signature="FireMinetTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="FireMinetTest" duration-ms="9764" started-at="2015-03-21T19:51:51Z" finished-at="2015-03-21T19:52:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- FireMinetTest -->
+        <test-method status="PASS" signature="HealingTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="HealingTest" duration-ms="5419" started-at="2015-03-21T19:52:01Z" finished-at="2015-03-21T19:52:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- HealingTest -->
+        <test-method status="PASS" signature="LazerEXShootTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="LazerEXShootTest" duration-ms="8398" started-at="2015-03-21T19:52:06Z" finished-at="2015-03-21T19:52:14Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LazerEXShootTest -->
+        <test-method status="PASS" signature="LazerShootTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="LazerShootTest" duration-ms="10397" started-at="2015-03-21T19:52:14Z" finished-at="2015-03-21T19:52:25Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LazerShootTest -->
+        <test-method status="PASS" signature="NuclearBlastTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="NuclearBlastTest" duration-ms="33888" started-at="2015-03-21T19:52:25Z" finished-at="2015-03-21T19:52:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- NuclearBlastTest -->
+        <test-method status="PASS" signature="PoisonDartTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="PoisonDartTest" duration-ms="1993" started-at="2015-03-21T19:52:59Z" finished-at="2015-03-21T19:53:01Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PoisonDartTest -->
+        <test-method status="PASS" signature="RocketandShieldTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="RocketandShieldTest" duration-ms="6154" started-at="2015-03-21T19:53:01Z" finished-at="2015-03-21T19:53:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- RocketandShieldTest -->
+        <test-method status="PASS" signature="SkipTurnTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="SkipTurnTest" duration-ms="31" started-at="2015-03-21T19:53:07Z" finished-at="2015-03-21T19:53:07Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- SkipTurnTest -->
+        <test-method status="PASS" signature="TeleportTest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="TeleportTest" duration-ms="11681" started-at="2015-03-21T19:53:07Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TeleportTest -->
+        <test-method status="PASS" signature="getHPtest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="getHPtest" duration-ms="132" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getHPtest -->
+        <test-method status="PASS" signature="getMoveLengthtest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="getMoveLengthtest" duration-ms="132" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getMoveLengthtest -->
+        <test-method status="PASS" signature="getOldCoordinatest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="getOldCoordinatest" duration-ms="1" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getOldCoordinatest -->
+        <test-method status="PASS" signature="getPlayerIDtest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="getPlayerIDtest" duration-ms="0" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPlayerIDtest -->
+        <test-method status="PASS" signature="getRadiustest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="getRadiustest" duration-ms="1" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getRadiustest -->
+        <test-method status="PASS" signature="getSquareSizetest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="getSquareSizetest" duration-ms="4" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getSquareSizetest -->
+        <test-method status="PASS" signature="getTeamNumbertest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="getTeamNumbertest" duration-ms="1" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:19Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getTeamNumbertest -->
+        <test-method status="PASS" signature="moveLefttest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="moveLefttest" duration-ms="10635" started-at="2015-03-21T19:53:19Z" finished-at="2015-03-21T19:53:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- moveLefttest -->
+        <test-method status="PASS" signature="moveRighttest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="moveRighttest" duration-ms="10265" started-at="2015-03-21T19:53:30Z" finished-at="2015-03-21T19:53:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- moveRighttest -->
+        <test-method status="PASS" signature="setCurrentCoordinates()[pri:0, instance:test.EngineTest@6cc7b4de]" name="setCurrentCoordinates" duration-ms="35" started-at="2015-03-21T19:53:40Z" finished-at="2015-03-21T19:53:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setCurrentCoordinates -->
+        <test-method status="PASS" signature="setPlayerNametest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="setPlayerNametest" duration-ms="35" started-at="2015-03-21T19:53:40Z" finished-at="2015-03-21T19:53:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setPlayerNametest -->
+        <test-method status="PASS" signature="setWeapontest()[pri:0, instance:test.EngineTest@6cc7b4de]" name="setWeapontest" duration-ms="24" started-at="2015-03-21T19:53:40Z" finished-at="2015-03-21T19:53:40Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setWeapontest -->
+      </class> <!-- test.EngineTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

@@ -1,0 +1,119 @@
+
+
+
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import javax.swing.JTextArea;
+import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.Observer;
+import java.util.Observable;
+
+/**
+ * The BoardView Class
+ * Creates the buttons, adds the listeners, and sets the text on the screen on every update
+ * @author mxz301
+ *
+ */
+public class BoardView extends JPanel implements Observer
+{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7522243226718662678L;
+	private DataBaseModel model;
+	private JButton[] cell;
+	private JTextArea screen;
+	private JPanel panel1= new JPanel();
+	public BoardView(DataBaseModel model)
+	{
+		// call super constructor
+		
+		super();
+		
+		//initialise model
+		
+		this.model = model;
+
+		
+		// create cell array
+		
+		cell = new JButton[13];
+		
+		// set layout
+		
+		setLayout( new GridLayout(4, 3) );
+		
+		panel1.setLayout(new GridLayout(4, 3));
+		
+		   
+		// creates a JTextArea screen
+		screen = new JTextArea(500,500);
+		
+		//adds it to the panel
+		add(screen);
+		
+		//creates all the buttons
+		cell[1] = new JButton("Add Student");
+		cell[2] = new JButton("Button2");
+		cell[3] = new JButton("Button3");
+		cell[4] = new JButton("Button4");
+		cell[5] = new JButton("Exit");
+		
+		
+			// loop through board positions
+		  // add listener
+		 // place on a second panel
+		
+		for(int i = 1; i <= 5; i++)
+		{
+		
+				
+				cell[i].addActionListener(
+					new ButtonListener(model,i,cell[i].getText()));
+				
+				panel1.add(cell[i]);
+			}
+		  
+	
+		
+		
+		
+		
+}
+	/**
+	 *  getPanel1() method
+	 * @return the panel1
+	 */
+public JPanel getPanel1()
+{
+ return this.panel1;
+}
+    
+	/**
+	 *  Updates the screen text, after each ActionPerormed
+	 */
+	public void update(Observable obs, Object obj)
+	{
+		
+		
+		try {
+			screen.setText("Input:");
+			screen.setText("");
+		} 
+		catch (ArrayIndexOutOfBoundsException e) {
+		//	System.out.println("No words with this signature");
+			System.out.println("AAAA");
+			System.out.println();
+		} catch (NumberFormatException e)
+		{
+			
+		
+		}
+			
+				
+			
+	}
+}
+		   
+	

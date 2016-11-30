@@ -1,0 +1,46 @@
+package MulticastExample;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+
+import javax.swing.JOptionPane;
+
+public class SendingSocket {
+
+	/**
+	 * @param args
+	 */
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		// Which port should we send to
+		int port = 5000;
+		// Which address
+		String group = "225.4.5.6";
+		// Which ttl
+		try {
+			String message =  JOptionPane.showInputDialog(null, "Enter in some text and I will send it to the group:");
+			// Step 1: creating a MulticastSocket, since we don't need to receive data, no port number is needed for MulticastSocket
+			MulticastSocket mcastSocket = new MulticastSocket();
+			byte [] buf = message.getBytes();
+			// Step 2: create a DatagramPacket for a message
+			DatagramPacket pack = new DatagramPacket(buf, buf.length,
+								 InetAddress.getByName(group), port);
+			// Step 3: set Time-To-Live (TTL) using setTimeToLive
+			int ttl = mcastSocket.getTimeToLive(); 
+			System.out.print(ttl);
+			mcastSocket.setTimeToLive(1); 
+			// Step 4: send data
+			mcastSocket.send(pack); 
+			mcastSocket.setTimeToLive(ttl);			
+
+			// Step 5: when we have finished sending data close the socket
+			mcastSocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

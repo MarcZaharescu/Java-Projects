@@ -1,0 +1,39 @@
+package email;
+
+
+public class Main {
+	 private static IMAPClient imapClient;
+	 private static SMTPMail smtpMail;
+	 /**
+	     * getting the IMTPClient
+	     * @return the IMTP object
+	     */
+	 public static IMAPClient getImapClient(){
+	        return imapClient;
+	    }
+	 /**
+	     * sets the IMAPClient 
+	     * @param imapClient the given IMAPClient
+	     */
+
+	    public static void setImapClient(IMAPClient imapClient) {
+	        Main.imapClient = imapClient;
+	    }
+	    /**
+	     * getting the SMTPMail
+	     * @return the SMTP object
+	     */
+	    public static SMTPMail getSmtpMail(){
+	        return smtpMail;
+	    }
+	    /**
+	     * sets the SMTPMail 
+	     * @param SMTPMail the given SMTPMail
+	     */
+	    public static void setSmtpMail(SMTPMail smtpMail) {
+	        Main.smtpMail = smtpMail;
+	    }
+	    
+	    
+
+}

@@ -1,0 +1,38 @@
+package predictivegui;
+
+import java.io.IOException;
+import javax.swing.JFrame;
+import predictive.DictionaryListImpl;
+
+/**
+ * The GUI class interface
+ * 
+ * @author mxz301
+ * 
+ */
+public class DictionaryGUI {
+	public static void main(String[] args) throws IOException {
+		// creates an object of DictionaryListImplement
+		// I have chosen this way of implementation because a binary search is
+		// performed in order to get the first signatures, so the final outcome
+		// is very efficient
+		// We don` t have to create a structure of the dictionary, every element
+		// is being put inside a HashMap of a specific key so our
+		// SignatureToWords function
+		// gets all the required elements almost instantly.
+		DictionaryListImpl dictionary = new DictionaryListImpl();
+
+		DictionaryComponent comp = new DictionaryComponent(dictionary);
+
+		// creates the frame of the interface
+		JFrame frame = new JFrame("Dictionary");
+		frame.setSize(400, 400);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// adds the DictionaryComponent on the frame
+		frame.add(comp);
+
+		// Sets the visibility of the frame to true
+		frame.setVisible(true);
+	}
+}

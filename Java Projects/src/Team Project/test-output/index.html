@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+  <title>TestNG reports</title>
+
+    <link type="text/css" href="testng-reports.css" rel="stylesheet" />  
+    <script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="testng-reports.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type='text/javascript'>
+      google.load('visualization', '1', {packages:['table']});
+      google.setOnLoadCallback(drawTable);
+      var suiteTableInitFunctions = new Array();
+      var suiteTableData = new Array();
+    </script>
+    <!--
+      <script type="text/javascript" src="jquery-ui/js/jquery-ui-1.8.16.custom.min.js"></script>
+     -->
+  </head>
+
+  <body>
+    <div class="top-banner-root">
+      <span class="top-banner-title-font">Test results</span>
+      <br/>
+      <span class="top-banner-font-1">1 suite</span>
+    </div> <!-- top-banner-root -->
+    <div class="navigator-root">
+      <div class="navigator-suite-header">
+        <span>All suites</span>
+        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
+          <img class="collapse-all-icon" src="collapseall.gif">
+          </img> <!-- collapse-all-icon -->
+        </a> <!-- collapse-all-link -->
+      </div> <!-- navigator-suite-header -->
+      <div class="suite">
+        <div class="rounded-window">
+          <div class="suite-header light-rounded-window-top">
+            <a href="#" class="navigator-link" panel-name="suite-Default_suite">
+              <span class="suite-name border-passed">Default suite</span>
+            </a> <!-- navigator-link -->
+          </div> <!-- suite-header light-rounded-window-top -->
+          <div class="navigator-suite-content">
+            <div class="suite-section-title">
+              <span>Info</span>
+            </div> <!-- suite-section-title -->
+            <div class="suite-section-content">
+              <ul>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
+                    <span>C:\Users\User\AppData\Local\Temp\testng-eclipse--2088091414\testng-customsuite.xml</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="testlist-Default_suite">
+                    <span class="test-stats">1 test</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="group-Default_suite">
+                    <span>0 groups</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="times-Default_suite">
+                    <span>Times</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="reporter-Default_suite">
+                    <span>Reporter output</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="ignored-methods-Default_suite">
+                    <span>Ignored methods</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+                <li>
+                  <a href="#" class="navigator-link " panel-name="chronological-Default_suite">
+                    <span>Chronological view</span>
+                  </a> <!-- navigator-link  -->
+                </li>
+              </ul>
+            </div> <!-- suite-section-content -->
+            <div class="result-section">
+              <div class="suite-section-title">
+                <span>Results</span>
+              </div> <!-- suite-section-title -->
+              <div class="suite-section-content">
+                <ul>
+                  <li>
+                    <span class="method-stats">25 methods,   25 passed</span>
+                  </li>
+                  <li>
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
+                    </span>
+                    <div class="method-list-content passed suite-Default_suite">
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="AnimateCrateTest">AnimateCrateTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="BazookaAndWallShootTest">BazookaAndWallShootTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="DirtCircleTest">DirtCircleTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="EnrageTest">EnrageTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="FireMineTest">FireMineTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="HealingTest">HealingTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="LazerEXShootTest">LazerEXShootTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="LazerShootTest">LazerShootTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="NuclearBlastTest">NuclearBlastTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="PoisonDartTest">PoisonDartTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="RocketandShieldTest">RocketandShieldTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="SkipTurnTest">SkipTurnTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="TeleportTest">TeleportTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="getHPtest">getHPtest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="getMoveLengthtest">getMoveLengthtest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="getOldCoordinatest">getOldCoordinatest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="getPlayerIDtest">getPlayerIDtest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="getRadiustest">getRadiustest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="getSquareSizetest">getSquareSizetest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="getTeamNumbertest">getTeamNumbertest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="moveLefttest">moveLefttest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="moveRighttest">moveRighttest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="setCurrentCoordinates">setCurrentCoordinates</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="setPlayerNametest">setPlayerNametest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img width="3%" src="passed.png"/>
+                        <a href="#" class="method navigator-link" panel-name="suite-Default_suite" title="test.EngineTest" hash-for-method="setWeapontest">setWeapontest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                    </div> <!-- method-list-content passed suite-Default_suite -->
+                  </li>
+                </ul>
+              </div> <!-- suite-section-content -->
+            </div> <!-- result-section -->
+          </div> <!-- navigator-suite-content -->
+        </div> <!-- rounded-window -->
+      </div> <!-- suite -->
+    </div> <!-- navigator-root -->
+    <div class="wrapper">
+      <div class="main-panel-root">
+        <div panel-name="suite-Default_suite" class="panel Default_suite">
+          <div class="suite-Default_suite-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">test.EngineTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="AnimateCrateTest">
+                  </a> <!-- AnimateCrateTest -->
+                  <span class="method-name">AnimateCrateTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="BazookaAndWallShootTest">
+                  </a> <!-- BazookaAndWallShootTest -->
+                  <span class="method-name">BazookaAndWallShootTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="DirtCircleTest">
+                  </a> <!-- DirtCircleTest -->
+                  <span class="method-name">DirtCircleTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="EnrageTest">
+                  </a> <!-- EnrageTest -->
+                  <span class="method-name">EnrageTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="FireMineTest">
+                  </a> <!-- FireMineTest -->
+                  <span class="method-name">FireMineTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="HealingTest">
+                  </a> <!-- HealingTest -->
+                  <span class="method-name">HealingTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="LazerEXShootTest">
+                  </a> <!-- LazerEXShootTest -->
+                  <span class="method-name">LazerEXShootTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="LazerShootTest">
+                  </a> <!-- LazerShootTest -->
+                  <span class="method-name">LazerShootTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="NuclearBlastTest">
+                  </a> <!-- NuclearBlastTest -->
+                  <span class="method-name">NuclearBlastTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="PoisonDartTest">
+                  </a> <!-- PoisonDartTest -->
+                  <span class="method-name">PoisonDartTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="RocketandShieldTest">
+                  </a> <!-- RocketandShieldTest -->
+                  <span class="method-name">RocketandShieldTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="SkipTurnTest">
+                  </a> <!-- SkipTurnTest -->
+                  <span class="method-name">SkipTurnTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="TeleportTest">
+                  </a> <!-- TeleportTest -->
+                  <span class="method-name">TeleportTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getHPtest">
+                  </a> <!-- getHPtest -->
+                  <span class="method-name">getHPtest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getMoveLengthtest">
+                  </a> <!-- getMoveLengthtest -->
+                  <span class="method-name">getMoveLengthtest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getOldCoordinatest">
+                  </a> <!-- getOldCoordinatest -->
+                  <span class="method-name">getOldCoordinatest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getPlayerIDtest">
+                  </a> <!-- getPlayerIDtest -->
+                  <span class="method-name">getPlayerIDtest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getRadiustest">
+                  </a> <!-- getRadiustest -->
+                  <span class="method-name">getRadiustest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getSquareSizetest">
+                  </a> <!-- getSquareSizetest -->
+                  <span class="method-name">getSquareSizetest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="getTeamNumbertest">
+                  </a> <!-- getTeamNumbertest -->
+                  <span class="method-name">getTeamNumbertest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="moveLefttest">
+                  </a> <!-- moveLefttest -->
+                  <span class="method-name">moveLefttest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="moveRighttest">
+                  </a> <!-- moveRighttest -->
+                  <span class="method-name">moveRighttest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="setCurrentCoordinates">
+                  </a> <!-- setCurrentCoordinates -->
+                  <span class="method-name">setCurrentCoordinates</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="setPlayerNametest">
+                  </a> <!-- setPlayerNametest -->
+                  <span class="method-name">setPlayerNametest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="setWeapontest">
+                  </a> <!-- setWeapontest -->
+                  <span class="method-name">setWeapontest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-Default_suite-class-passed -->
+        </div> <!-- panel Default_suite -->
+        <div panel-name="test-xml-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">C:\Users\User\AppData\Local\Temp\testng-eclipse--2088091414\testng-customsuite.xml</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <pre>
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE suite SYSTEM &quot;http://testng.org/testng-1.0.dtd&quot;&gt;
+&lt;suite name=&quot;Default suite&quot;&gt;
+  &lt;test verbose=&quot;2&quot; name=&quot;Default test&quot;&gt;
+    &lt;classes&gt;
+      &lt;class name=&quot;test.EngineTest&quot;/&gt;
+    &lt;/classes&gt;
+  &lt;/test&gt; &lt;!-- Default test --&gt;
+&lt;/suite&gt; &lt;!-- Default suite --&gt;
+            </pre>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="testlist-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Tests for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <ul>
+              <li>
+                <span class="test-name">Default test (1 class)</span>
+              </li>
+            </ul>
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="group-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Groups for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="times-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Times for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="times-div">
+              <script type="text/javascript">
+suiteTableInitFunctions.push('tableData_Default_suite');
+function tableData_Default_suite() {
+var data = new google.visualization.DataTable();
+data.addColumn('number', 'Number');
+data.addColumn('string', 'Method');
+data.addColumn('string', 'Class');
+data.addColumn('number', 'Time (ms)');
+data.addRows(25);
+data.setCell(0, 0, 0)
+data.setCell(0, 1, 'BazookaAndWallShootTest')
+data.setCell(0, 2, 'test.EngineTest')
+data.setCell(0, 3, 39481);
+data.setCell(1, 0, 1)
+data.setCell(1, 1, 'AnimateCrateTest')
+data.setCell(1, 2, 'test.EngineTest')
+data.setCell(1, 3, 34316);
+data.setCell(2, 0, 2)
+data.setCell(2, 1, 'LazerShootTest')
+data.setCell(2, 2, 'test.EngineTest')
+data.setCell(2, 3, 13610);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'NuclearBlastTest')
+data.setCell(3, 2, 'test.EngineTest')
+data.setCell(3, 3, 11883);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'TeleportTest')
+data.setCell(4, 2, 'test.EngineTest')
+data.setCell(4, 3, 10468);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'LazerEXShootTest')
+data.setCell(5, 2, 'test.EngineTest')
+data.setCell(5, 3, 10078);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'moveRighttest')
+data.setCell(6, 2, 'test.EngineTest')
+data.setCell(6, 3, 9893);
+data.setCell(7, 0, 7)
+data.setCell(7, 1, 'FireMineTest')
+data.setCell(7, 2, 'test.EngineTest')
+data.setCell(7, 3, 9834);
+data.setCell(8, 0, 8)
+data.setCell(8, 1, 'moveLefttest')
+data.setCell(8, 2, 'test.EngineTest')
+data.setCell(8, 3, 9269);
+data.setCell(9, 0, 9)
+data.setCell(9, 1, 'RocketandShieldTest')
+data.setCell(9, 2, 'test.EngineTest')
+data.setCell(9, 3, 6079);
+data.setCell(10, 0, 10)
+data.setCell(10, 1, 'HealingTest')
+data.setCell(10, 2, 'test.EngineTest')
+data.setCell(10, 3, 5178);
+data.setCell(11, 0, 11)
+data.setCell(11, 1, 'DirtCircleTest')
+data.setCell(11, 2, 'test.EngineTest')
+data.setCell(11, 3, 3550);
+data.setCell(12, 0, 12)
+data.setCell(12, 1, 'PoisonDartTest')
+data.setCell(12, 2, 'test.EngineTest')
+data.setCell(12, 3, 1844);
+data.setCell(13, 0, 13)
+data.setCell(13, 1, 'EnrageTest')
+data.setCell(13, 2, 'test.EngineTest')
+data.setCell(13, 3, 984);
+data.setCell(14, 0, 14)
+data.setCell(14, 1, 'getMoveLengthtest')
+data.setCell(14, 2, 'test.EngineTest')
+data.setCell(14, 3, 125);
+data.setCell(15, 0, 15)
+data.setCell(15, 1, 'getHPtest')
+data.setCell(15, 2, 'test.EngineTest')
+data.setCell(15, 3, 110);
+data.setCell(16, 0, 16)
+data.setCell(16, 1, 'setPlayerNametest')
+data.setCell(16, 2, 'test.EngineTest')
+data.setCell(16, 3, 31);
+data.setCell(17, 0, 17)
+data.setCell(17, 1, 'setWeapontest')
+data.setCell(17, 2, 'test.EngineTest')
+data.setCell(17, 3, 16);
+data.setCell(18, 0, 18)
+data.setCell(18, 1, 'setCurrentCoordinates')
+data.setCell(18, 2, 'test.EngineTest')
+data.setCell(18, 3, 16);
+data.setCell(19, 0, 19)
+data.setCell(19, 1, 'getSquareSizetest')
+data.setCell(19, 2, 'test.EngineTest')
+data.setCell(19, 3, 0);
+data.setCell(20, 0, 20)
+data.setCell(20, 1, 'getOldCoordinatest')
+data.setCell(20, 2, 'test.EngineTest')
+data.setCell(20, 3, 0);
+data.setCell(21, 0, 21)
+data.setCell(21, 1, 'getTeamNumbertest')
+data.setCell(21, 2, 'test.EngineTest')
+data.setCell(21, 3, 0);
+data.setCell(22, 0, 22)
+data.setCell(22, 1, 'getRadiustest')
+data.setCell(22, 2, 'test.EngineTest')
+data.setCell(22, 3, 0);
+data.setCell(23, 0, 23)
+data.setCell(23, 1, 'getPlayerIDtest')
+data.setCell(23, 2, 'test.EngineTest')
+data.setCell(23, 3, 0);
+data.setCell(24, 0, 24)
+data.setCell(24, 1, 'SkipTurnTest')
+data.setCell(24, 2, 'test.EngineTest')
+data.setCell(24, 3, 0);
+window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
+return data;
+}
+              </script>
+              <span class="suite-total-time">Total running time: 2 minutes</span>
+              <div id="times-div-Default_suite">
+              </div> <!-- times-div-Default_suite -->
+            </div> <!-- times-div -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="reporter-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Reporter output for Default suite</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="ignored-methods-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">0 ignored methods</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+        <div panel-name="chronological-Default_suite" class="panel">
+          <div class="main-panel-header rounded-window-top">
+            <span class="header-content">Methods in chronological order</span>
+          </div> <!-- main-panel-header rounded-window-top -->
+          <div class="main-panel-content rounded-window-bottom">
+            <div class="chronological-class">
+              <div class="chronological-class-name">test.EngineTest</div> <!-- chronological-class-name -->
+              <div class="configuration-class before">
+                <span class="method-name">setUP</span>
+                <span class="method-start">0 ms</span>
+              </div> <!-- configuration-class before -->
+              <div class="test-method">
+                <span class="method-name">AnimateCrateTest</span>
+                <span class="method-start">968 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">BazookaAndWallShootTest</span>
+                <span class="method-start">35284 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">DirtCircleTest</span>
+                <span class="method-start">74765 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">EnrageTest</span>
+                <span class="method-start">78315 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">FireMineTest</span>
+                <span class="method-start">79299 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">HealingTest</span>
+                <span class="method-start">89133 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">LazerEXShootTest</span>
+                <span class="method-start">94327 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">LazerShootTest</span>
+                <span class="method-start">104405 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">NuclearBlastTest</span>
+                <span class="method-start">118015 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">PoisonDartTest</span>
+                <span class="method-start">129898 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">RocketandShieldTest</span>
+                <span class="method-start">131742 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">SkipTurnTest</span>
+                <span class="method-start">137821 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">TeleportTest</span>
+                <span class="method-start">137821 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getHPtest</span>
+                <span class="method-start">148289 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getMoveLengthtest</span>
+                <span class="method-start">148414 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getOldCoordinatest</span>
+                <span class="method-start">148539 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getPlayerIDtest</span>
+                <span class="method-start">148539 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getRadiustest</span>
+                <span class="method-start">148539 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getSquareSizetest</span>
+                <span class="method-start">148539 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">getTeamNumbertest</span>
+                <span class="method-start">148555 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">moveLefttest</span>
+                <span class="method-start">148555 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">moveRighttest</span>
+                <span class="method-start">157824 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">setCurrentCoordinates</span>
+                <span class="method-start">167717 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">setPlayerNametest</span>
+                <span class="method-start">167733 ms</span>
+              </div> <!-- test-method -->
+              <div class="test-method">
+                <span class="method-name">setWeapontest</span>
+                <span class="method-start">167764 ms</span>
+              </div> <!-- test-method -->
+          </div> <!-- main-panel-content rounded-window-bottom -->
+        </div> <!-- panel -->
+      </div> <!-- main-panel-root -->
+    </div> <!-- wrapper -->
+  </body>
+</html>

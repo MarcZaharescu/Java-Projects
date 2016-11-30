@@ -1,0 +1,41 @@
+package javaNIONetworkExamples;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+
+public class ServersocketchannelExample {
+	public final static int PORT = 2345;
+	public static void main(String[] args) throws IOException {
+	    ServerSocketChannel serverChannel = ServerSocketChannel.open();
+	    SocketAddress port = new InetSocketAddress(PORT);
+	    serverChannel.socket().bind(port);
+
+	    while (true) {
+	      SocketChannel clientChannel = serverChannel.accept();
+
+	      String response = "Hello " + clientChannel.socket().getInetAddress() + " on port "
+	          + clientChannel.socket().getPort() + "\r\n";
+	      response += "This is " + serverChannel.socket() + " on port "
+	          + serverChannel.socket().getLocalPort() + "\r\n";
+
+	      // Convert string to byte array
+	      byte[] data = response.getBytes("UTF-8");
+	      // 'wrap' an existing byte array into a buffer.
+	      ByteBuffer buffer = ByteBuffer.wrap(data);
+	      // Write a sequence of bytes to clientChannel from buffer.
+	      while (buffer.hasRemaining())
+	        clientChannel.write(buffer);
+	      
+	      clientChannel.close();
+	    }
+	  }
+
+
+}

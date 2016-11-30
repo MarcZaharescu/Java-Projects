@@ -1,0 +1,97 @@
+import java.awt.EventQueue;
+
+import javax.mail.MessagingException;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.text.JTextComponent;
+
+import com.sun.mail.imap.IMAPFolder;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.Properties;
+
+import javaMailExample.IMAPClient;
+
+
+public class Interface {
+
+	private JFrame frame;
+	private String username;
+	protected  JTextField usernameField;
+	protected Properties prop;
+	private JButton btnButtonLogin;
+	protected IMAPFolder folder;
+	protected GUI gui;
+	//protected String[] //subjectName;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Interface window = new Interface();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Interface() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(getButtonLogin());
+	
+		JLabel lblUsername = new JLabel("username:");
+		lblUsername.setBounds(54, 116, 67, 14);
+		frame.getContentPane().add(lblUsername);
+	}
+	
+	
+	private JButton getButtonLogin() {
+		if (btnButtonLogin == null) {
+			btnButtonLogin = new JButton("log in");
+			btnButtonLogin.setBounds(131, 165, 218, 54);;
+			btnButtonLogin.addActionListener(new ActionListener() {
+				private String password;
+
+				public void actionPerformed(ActionEvent e) {
+					username=usernameField.getText();
+					prop=IMAPClient.setConnection(username);						
+					 password=IMAPClient.getPassword();
+					try {
+					
+						gui = new GUI();
+						
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnButtonLogin;
+	}
+
+	
+	
+}

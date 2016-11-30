@@ -1,0 +1,90 @@
+import java.awt.EventQueue;
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+
+public class FilePicker {
+
+	private JFrame frame;
+	private	JFileChooser filePicker;
+	private JTextField attachmentTextField;
+	private File file;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FilePicker window = new FilePicker();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public FilePicker() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// JFilePicker filePicker = new JFilePicker("Pick a file", "Browse...");
+	        //filePicker.setMode(JFilePicker.MODE_SAVE);
+	    
+		
+		
+		filePicker = new JFileChooser("Browse...");
+		 filePicker.setBounds(0, 308, 278, 101);
+	
+		 //filePicker.setMode(JFileChooser);
+		// filePicker.addFileTypeFilter(".jpg", "JPEG Images");
+		// filePicker.addFileTypeFilter(".mp4", "MPEG-4 Videos");
+		 
+		 
+		 frame.getContentPane().add(filePicker);
+		 frame.setVisible(true);
+		 
+		  int returnVal = filePicker.showOpenDialog(filePicker);
+
+	        String log="";
+			String newline="/n";
+			if (returnVal == JFileChooser.APPROVE_OPTION) {
+	           file = filePicker.getSelectedFile();
+	            //This is where a real application would open the file.
+	            log=("Opening: " + file.getName() + "." + newline);
+	        } else {
+	            log=("Open command cancelled by user." + newline);
+	        }
+			
+		 System.out.println(log);
+		// attachmentTextField.setText(filePicker.getSelectedFile().toString());
+	}
+	
+	
+	public String getAttachment()
+	 {
+		String attachment = attachmentTextField.getText() + " ";
+	 
+     //String[] attachments = attachment.split(" ");
+     
+    // return attachment;
+     
+		return file.getName();
+	 }
+
+}

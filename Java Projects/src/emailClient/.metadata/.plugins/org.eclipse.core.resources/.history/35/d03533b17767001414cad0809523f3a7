@@ -1,0 +1,42 @@
+package MulticastExample;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetAddress;
+import java.net.MulticastSocket;
+
+public class ReceivingSocket {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int port = 5000;
+		// Which address
+		String group = "225.4.5.6";		
+		try {
+			// Create the socket and bind it to port 'port'.
+			MulticastSocket mcastSocket = new MulticastSocket(port);
+			// 
+			mcastSocket.joinGroup(InetAddress.getByName(group));
+			// Now the socket is set up and we are ready to receive packets
+			// Create a DatagramPacket and do a receive
+			byte buf[] = new byte[1024];
+			DatagramPacket datapack = new DatagramPacket(buf, buf.length);
+			mcastSocket.receive(datapack);
+			// Print out the data we just received,
+
+			String packStr = new String(datapack.getData(), 0, datapack.getLength());
+			System.out.println(packStr);
+			// And when we have finished receiving data leave the multicast group and
+			// close the socket
+			mcastSocket.leaveGroup(InetAddress.getByName(group));
+			mcastSocket.close();			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

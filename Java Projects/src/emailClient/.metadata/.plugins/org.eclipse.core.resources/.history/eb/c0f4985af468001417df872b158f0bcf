@@ -1,0 +1,62 @@
+import java.awt.Color;
+import java.awt.Component;
+import java.util.HashMap;
+
+import javaMailExample.IMAPClient;
+
+import javax.mail.MessagingException;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
+
+public class MyListRender extends DefaultListCellRenderer  
+    {  
+        /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+		private HashMap<Object, String> theChosen = new HashMap<Object, String>();  
+   
+      
+		
+
+		public Component getListCellRendererComponent( JList list,  
+                Object value, int index, boolean isSelected,  
+                boolean cellHasFocus )  
+        {     setForeground( Color.black );  
+			
+            super.getListCellRendererComponent( list, value, index,  
+                    isSelected, cellHasFocus );
+   
+            boolean isSelected1;
+            int index1;
+			for(int i=1;i<11;i++)
+				try {
+					isSelected1=GUI.geKey(i);
+					if(isSelected1)
+					{
+						 
+				              
+				                    setForeground( Color.red );  
+				               System.out.println("index"+i + isSelected1); 
+				             
+					}
+				} catch (MessagingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            index1 = GUI.geKeyPosition();		
+            if( isSelected )  
+            {  
+                theChosen.put( value, "chosen" );  
+            }  
+   
+            if( theChosen.containsKey( value ) )  
+            {  
+                setForeground( Color.black );  
+            }  
+           
+   
+            return( this );  
+        }  
+    
+    }  

@@ -1,0 +1,271 @@
+import java.awt.EventQueue;
+
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
+import javax.mail.Flags.Flag;
+import javax.mail.Flags;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+
+import java.awt.TextField;
+
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.Date;
+import java.util.Properties;
+
+public class NewEmailFrame {
+
+	private JFrame frmNewEmail;
+	private JTextField sendToField;
+	private JTextField subjectField;
+	private JTextArea textArea;
+	private String emailSubject, emailSender, emailSendTo, emailBody;
+	private String username;
+	private String password;
+	private Properties props;
+	private FilePicker filePicker=null;
+    private String attachments="nofile";
+    private JTextField ccField;
+    private String cc="nocc";
+	
+    public String getEmailSubject() {
+		return emailSubject;
+	}
+
+	public void setEmailSubject(String emailSubject) {
+		this.emailSubject = emailSubject;
+	}
+
+	public String getEmailSender() {
+		return emailSender;
+	}
+
+	public void setEmailSender(String emailSender) {
+		this.emailSender = emailSender;
+	}
+
+	public String getEmailSendTo() {
+		return emailSendTo;
+	}
+
+	public void setEmailSendTo(String emailSendTo) {
+		this.emailSendTo = emailSendTo;
+	}
+
+	public String getEmailBody() {
+		return emailBody;
+	}
+
+	public void setEmailBody(String emailBody) {
+		this.emailBody = emailBody;
+	}
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					NewEmailFrame window = new NewEmailFrame();
+					window.frmNewEmail.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public NewEmailFrame() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmNewEmail = new JFrame();
+		frmNewEmail.setTitle("New Email");
+		frmNewEmail.setBounds(100, 100, 740, 482);
+		frmNewEmail.getContentPane().setLayout(null);
+
+		JLabel lblSendto = new JLabel("send to:");
+		lblSendto.setBounds(153, 28, 56, 20);
+		frmNewEmail.getContentPane().add(lblSendto);
+
+		JLabel lblSubject = new JLabel("subject");
+		lblSubject.setBounds(153, 73, 46, 14);
+		frmNewEmail.getContentPane().add(lblSubject);
+		
+		JLabel lblCc = new JLabel("cc:");
+		lblCc.setBounds(176, 120, 30, 14);
+		frmNewEmail.getContentPane().add(lblCc);
+		
+				sendToField = new JTextField();
+				sendToField.setBounds(219, 28, 389, 20);
+				frmNewEmail.getContentPane().add(sendToField);
+				sendToField.setColumns(10);
+
+		subjectField = new JTextField();
+		subjectField.setBounds(218, 70, 390, 20);
+		frmNewEmail.getContentPane().add(subjectField);
+		subjectField.setColumns(10);
+		
+		ccField = new JTextField();
+		ccField.setBounds(219, 117, 389, 20);
+		frmNewEmail.getContentPane().add(ccField);
+		ccField.setColumns(10);
+
+		textArea = new JTextArea();
+		textArea.setBounds(219, 168, 389, 184);
+		frmNewEmail.getContentPane().add(textArea);
+
+		JButton btnSend = new JButton("Send");
+		btnSend.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setEmailSendTo(sendToField.getText());
+				setEmailSubject(subjectField.getText());
+				setEmailBody(textArea.getText());
+
+				System.out.println(getEmailSendTo());
+				System.out.println(getEmailSubject());
+				System.out.println(getEmailBody());
+				System.out.println(GUI.getUserName());
+
+				// for(int i=0;i<999;i++)
+				{
+					// Step 3: Create a message
+					try {
+						sendMessage(GUI.getUserName(), GUI.getPassword(),
+								GUI.getProps());
+					} catch (MessagingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
+			}
+		});
+		btnSend.setBounds(519, 382, 89, 23);
+		frmNewEmail.getContentPane().add(btnSend);
+
+		JButton btnAttach = new JButton("Attach");
+		btnAttach.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				filePicker = new FilePicker();
+
+			}
+		});
+		btnAttach.setBounds(400, 382, 89, 23);
+		frmNewEmail.getContentPane().add(btnAttach);
+		frmNewEmail.setVisible(true);
+
+	}
+
+	public void sendMessage(String username, String password, Properties props)
+			throws AddressException, MessagingException {
+
+		this.username = username;
+		this.password = password;
+		cc=ccField.getText();
+		if(filePicker!=null)
+		{attachments=filePicker.getAttachment();
+		System.out.println("FILE NAME "+ filePicker.getAttachment());
+		}
+		String smtphost = "smtp.gmail.com";
+		System.out.println(this.username);
+		System.out.println(this.password);
+		// Step 1: Set all Properties
+		// Get system properties
+		this.props = System.getProperties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", smtphost);
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getDefaultInstance(props);
+		MimeMessage message = new MimeMessage(session);
+		message.setFrom(new InternetAddress(username));
+		message.setRecipients(Message.RecipientType.TO,
+				InternetAddress.parse(getEmailSendTo()));
+		message.setSubject(getEmailSubject());
+		message.setText(getEmailBody());
+		System.out.println(cc);
+		
+		message.setRecipients(Message.RecipientType.CC,
+				InternetAddress.parse(cc));
+		
+	      BodyPart messageBodyPart = new MimeBodyPart();
+	      Multipart multipart = new MimeMultipart();
+		if(!attachments.equals("nofile"))
+			{
+			
+			  // Create the message part 
+	   
+
+	        
+	         
+	         // Create a multipar message
+	        
+
+	         // Set text message part
+	         multipart.addBodyPart(messageBodyPart);
+
+	         // Part two is attachment
+	         messageBodyPart = new MimeBodyPart();
+	         
+	         DataSource source = new FileDataSource(filePicker.getPath());
+	         messageBodyPart.setDataHandler(new DataHandler(source));
+	         messageBodyPart.setFileName(attachments);
+	         multipart.addBodyPart(messageBodyPart);
+
+	         // Send the complete message parts
+	         message.setContent(multipart );
+
+			}
+    
+       
+		message.setSentDate(new Date());
+    
+
+		
+  
+		
+		
+      
+    
+       
+       message.saveChanges();
+
+		// Step 4: Send the message by javax.mail.Transport .
+		Transport tr = session.getTransport("smtp"); // Get Transport object
+														// from session
+		tr.connect(smtphost, username, password); // We need to connect
+		tr.sendMessage(message, message.getAllRecipients()); // Send message
+
+		System.out.println("Done");
+
+	}
+}

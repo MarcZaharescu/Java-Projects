@@ -1,0 +1,76 @@
+package javaNIONetworkExamples;
+
+import java.io.IOException;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.DatagramChannel;
+
+public class DatagramChannelServerExample {
+
+	/**
+	 * @param args
+	 */
+	private static int WordCount(String str) {
+		int wordChar = 0;
+		boolean prevCharWasSpace=true;
+		for (int i = 0; i < str.length(); i++) 
+		{
+			if (str.charAt(i) == ' ') {
+				prevCharWasSpace=true;
+			}
+			else{
+				if(prevCharWasSpace) wordChar++;
+				prevCharWasSpace = false;
+
+			}
+		}	
+		return wordChar;
+
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int port = 1500;
+
+
+
+		try {
+			// You might notice we only use one channel for reading and writting data
+			DatagramChannel channel = DatagramChannel.open( );
+			DatagramSocket socket = channel.socket( );
+			SocketAddress address = new InetSocketAddress(port);
+			socket.bind(address);
+			ByteBuffer buffer = ByteBuffer.allocateDirect(1024);
+
+			while (true) {
+
+				SocketAddress client = channel.receive(buffer);
+
+				buffer.flip( );
+				String Str = new String(buffer.array());
+				System.out.println("String is: '" + Str + "'");				
+				Integer NumWord = WordCount(Str);
+				byte[] data = NumWord.toString().getBytes("UTF-8");
+				// 'wrap' an existing byte array into a buffer.
+				buffer = ByteBuffer.wrap(data);
+				// send data from buffer to client
+				channel.send(buffer, client);
+				buffer.clear( );
+
+			} 
+
+		} 
+
+		catch (IOException ex) {
+
+			System.err.println(ex);
+
+		} // end catch
+
+
+	} // end main
+}
+
+

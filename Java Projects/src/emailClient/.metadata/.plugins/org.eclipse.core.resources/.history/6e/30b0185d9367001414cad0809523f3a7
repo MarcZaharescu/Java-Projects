@@ -1,0 +1,64 @@
+package predictivegui;
+
+import java.awt.event.*;
+
+
+/**
+ * ButtonListener class, implements the ActionListener
+ * @author mxz301
+ *
+ */
+public class ButtonListener implements ActionListener {
+	private DictionaryModel model;
+
+	private String text;
+	private int index;
+	private StringBuffer s = new StringBuffer();;
+
+	/**
+	 *  The Constructor, initialises the field variables
+	 * @param model a DictionaryModel
+	 * @param i		a integer i, which represents the index of the button
+	 * @param string	, a String string which contains the information on the button
+	 */
+	public ButtonListener(DictionaryModel model, int i, String string) {
+		this.model = model;
+		this.text = string;
+		this.index = i;
+
+	}
+
+	/**
+	 *  actionPerformed() method
+	 *  depending on the index received through the constructor (the button which is pressed), it calls different methods() from the DictionaryModel class
+	 */
+	public void actionPerformed(ActionEvent e) {
+		if (index == 10) {
+			model.resetWord(text);		// if the button "0" is pressed, it will reset the word
+
+		} else if (index == 11) {
+
+			model.getNextWord();		// if the button "*" is pressed, the next word with the same signature is being shown on the screen
+			model.getWord(s.toString());
+
+		} else if (index == 12) {
+						
+		 model.remove();					// if the button "-" is pressed, it removes one letter of the current signature
+		 model.getWord(s.toString());
+			  
+			  
+		} 
+		
+		else if (index == 1) {
+											// The button "1" is disabled
+
+		}
+		else {
+			s = new StringBuffer();			// If any of the buttons from "2-"9 are being pressed, the text on the button in this case the number is being appended on a StringBuffer s,
+											// and we call the method which returns all the previous letters from the signature combined with the current one
+			s.append(text);
+			model.getWord(s.toString());
+		}
+		model.update(); 		// notifies the observers, and sets the changes
+	}
+}

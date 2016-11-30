@@ -1,0 +1,72 @@
+package email;
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Properties;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/**
+ * Servlet implementation class Controller that logs in and sends an email to a specified user
+ */
+
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	public String username;
+	public String password;
+	private Properties prop;
+	
+       
+
+	/**
+	 * Log in to the MAIL API and sends and Email
+	 */
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		username = request.getParameter("element_1");
+		System.out.println("Login attempted : ");
+		System.out.println(username);
+		password = request.getParameter("element_2");
+		System.out.println(password);
+		
+		//username="zaharescumarc10@gmail.com";
+	    //password="zaharescu10";
+	    
+	    HttpSession session = request.getSession();
+		session.setAttribute("username", username);
+		session.setAttribute("password", password);
+		
+		Cookie cookieUsername = new Cookie("username", username);
+		Cookie cookiePassword = new Cookie("password", password);
+		
+		response.addCookie(cookieUsername);
+		response.addCookie(cookiePassword);
+		PrintWriter out = response.getWriter();
+		
+		Model imapClient = new Model();
+		prop=imapClient.setConnection(username,password);
+		if(imapClient.startSession(prop)){
+			response.sendRedirect("Email.jsp");
+			System.out.println("redirecting to login success page");
+			
+		}else	{
+			out.println("User Name or Password Error! ");   
+	        RequestDispatcher rd=request.getRequestDispatcher("/Login.jsp");
+	        rd.include(request, response);  
+		}
+		
+	}
+
+}

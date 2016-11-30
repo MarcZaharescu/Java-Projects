@@ -1,0 +1,72 @@
+package gui;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Observable;
+import java.util.Set;
+
+
+/**
+ * The DictionaryModel class extends observable and creates a model of the
+ * chosen implementation of the Dictionary
+ * 
+ * @author mxz301
+ * 
+ */
+public class DataBaseModel extends Observable {
+	private String s = "";
+	private Exercise2 oxo;
+	private Set<String> set;
+	private String dictionaryWord;
+	private Iterator<String> iterator;
+	private int index = 0;
+	private StringBuffer existedWords = new StringBuffer();
+
+	/**
+	 * The constructor initialises the object
+	 * 
+	 * @param oxo
+	 *            a DictionaryListImpl object
+	 */
+	public DataBaseModel(Exercise2 oxo) {
+		super();
+		this.oxo = oxo;
+	}
+
+	/**
+	 * SignatureToWOrds method
+	 * 
+	 * @param signature
+	 *            , aStrign signature
+	 * @return a string which represents the word of the dictionary which has a
+	 *         certain signature
+	 * @throws IOException
+	 */
+	
+	
+	public void remove() {
+
+		
+		StringBuffer remove = new StringBuffer();
+		
+		for (int i = 0; i < s.length() - 1; i++)
+			remove.append(s.charAt(i));
+
+		s = remove.toString();
+	}
+
+	/**
+	 * Update() method sets changes and notifies observers
+	 */
+	public void update() {
+		setChanged();
+		notifyObservers();
+	}
+
+
+
+	public void addStudent() {
+		
+		
+	}
+}

@@ -1,0 +1,106 @@
+package email;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.Properties;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class ControllerDataBase that connects to the database, adds a user and searches for it
+ */
+@WebServlet("/ControllerDataBase")
+public class ControllerDataBase extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	public String value[] = new String[2];
+	private String addFirstField;
+	private String addLastField;
+	private String addEmailField;
+	private String searchFirstField;
+	private String searchLastField;
+
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ControllerDataBase() {
+
+		super();
+
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		value[0] = "Calculator1";
+		value[1] = "mxz301";
+
+	
+
+		if (request.getParameter("button2") != null) {
+			
+			addFirstField = request.getParameter("addFirstField");
+			addLastField = request.getParameter("addLastField");
+			addEmailField = request.getParameter("addEmailField");
+			
+			// /String value[] = ModelDataBase.ReadUserDetails();
+			try {
+				Connection dbConn = ModelDataBase.setUpConnection(value);
+				ModelDataBase.createTables(dbConn);
+				ModelDataBase.addDetails(addFirstField, addLastField,
+						addEmailField, dbConn);
+				PrintWriter out = response.getWriter();
+				out.println("Contact Added! ");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/DataBase.jsp");
+				rd.include(request, response);
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (request.getParameter("button1") != null) {
+			
+			
+			searchFirstField = request.getParameter("searchFirstField");
+			searchLastField = request.getParameter("searchLastField");
+			searchEmailField = request.getParameter("searchEmailField");
+			Connection dbConn;
+			try {
+				dbConn = ModelDataBase.setUpConnection(value);
+				ModelDataBase.searchDetails(searchFirstField, searchLastField,
+						dbConn);
+				PrintWriter out = response.getWriter();
+				out.println("Contact Found! ");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("/DataBase.jsp");
+				rd.include(request, response);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+		}
+
+	}
+
+}

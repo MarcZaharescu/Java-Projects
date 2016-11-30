@@ -1,0 +1,493 @@
+package javaMailExample;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Properties;
+
+import javax.mail.Flags.Flag;
+import javax.mail.Folder;
+import javax.mail.BodyPart;
+import javax.mail.Flags;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Session;
+import javax.mail.Store;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.mail.Multipart;
+
+import com.sun.mail.imap.IMAPFolder;
+import com.sun.mail.imap.IMAPStore;
+
+/**
+ * @author mxz301
+ * 
+ *         Produces a IMAPCLient version for the email application with all the
+ *         necessary methods
+ *
+ */
+public class IMAPClient {
+
+	static String username = "";
+	static String password = "";
+	static Properties props = null;
+	static IMAPFolder folder = null;
+	static Store store = null;
+	static String content[];
+	static int j = 0;
+	private static Message[] messages;
+	private static IMAPFolder spamFolder;
+	private static IMAPFolder inboxFolder;
+	private static IMAPFolder recentFolder;
+
+	/**
+	 * CLoses the store and folder of the email
+	 * 
+	 * @param folder
+	 *            and IMAPFolder
+	 * @throws MessagingException
+	 */
+	public static void closeFolderAndStore(IMAPFolder folder)
+			throws MessagingException {
+		System.out
+				.println("---------------------------------CLossing the Store and the Folder-------------------------------------");
+
+		if (folder != null && folder.isOpen()) {
+			folder.close(true);
+		}
+		if (store != null) {
+			store.close();
+		}
+	}
+
+	/**
+	 * @param folder
+	 *            IMAPFolder
+	 * @return String[] containing all the email subjects
+	 * @throws MessagingException
+	 */
+	public static String[] getEmailSubjects(IMAPFolder folder)
+			throws MessagingException {
+		System.out
+				.println("--------------------------------Getting the Email Subjects-------------------------------------");
+
+		// gets the messages from the folder
+		messages = folder.getMessages();
+		int count = 0;
+		// creates the subject[]
+		String subject[] = new String[messages.length];
+
+		// for every message it gets the subject and initialises the subject
+		// array
+		for (Message message : messages) {
+			subject[count] = message.getSubject();
+			System.out.println("Message number:" + count + " is "
+					+ subject[count]);
+			count++;
+
+		}
+		return subject;
+	}
+
+	/**
+	 * @param folder
+	 *            IMAPFolder
+	 * @param i
+	 *            index of email
+	 * @return String containing the selected email content
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
+
+	public static String getEmailContent(IMAPFolder folder, int i)
+			throws MessagingException, IOException {
+		System.out
+				.println("---------------------------------Get Email Content---------------------------------------------");
+
+		// gets required the message in the selected folder
+		Message message = folder.getMessage(i + 1);
+		int count = 0;
+		String content1 = "";
+
+		// if the message contains normal text then it selects its content
+		if (message.getContentType().contains("TEXT/PLAIN")) {
+			content1 = message.getContent().toString();
+
+		} else {
+			// other wise it gets all the parts of the message using a Multipart
+			// data field
+
+			Multipart multipart = (Multipart) message.getContent();
+
+			for (int x = 0; x < multipart.getCount(); x++) {
+				BodyPart bodyPart = multipart.getBodyPart(x);
+
+				if (bodyPart.getContentType().contains("TEXT/PLAIN")) {
+					try {
+						content1 = bodyPart.getContent().toString();
+					} catch (NullPointerException e1) {
+						System.out
+								.println("Get Content --- null pointer exception");
+					}
+				}
+
+				count++;
+
+			}
+
+		}
+		return content1;
+	}
+
+	/**
+	 * reads the user details from a property file and returns a string containing the user name and password
+	 * @return the user details 
+	 */
+	public static String[] ReadUserDetails() {
+		System.out
+				.println("---------------------------------Reading the user details--------------------------------------");
+		String[] key = new String[2];
+		String[] value = new String[2];
+		int i = 0;
+		int j = 0;
+
+		try {
+			File file = new File("src/userDetails");
+			FileInputStream fileInput = new FileInputStream(file);
+			Properties properties = new Properties();
+			properties.load(fileInput);
+			fileInput.close();
+
+			Enumeration<Object> enuKeys = properties.keys();
+			while (enuKeys.hasMoreElements()) {
+				key[i] = (String) enuKeys.nextElement();
+				value[j] = properties.getProperty(key[i]);
+
+				i++;
+				j++;
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return value;
+	}
+
+	/**Sets up the connection to the email
+	 * @param value the user name details
+	 * @return a Property object
+	 */
+	public static Properties setConnection(String value) {
+		System.out
+				.println("-------------------------------------Set the Connection----------------------------------------");
+		username = value;
+		password = "";
+
+		// gets the properties of the system
+		props = System.getProperties();
+		props.setProperty("mail.store.protocol", "imaps");
+
+		// creates a JPasswordField so that the user has to input it`s password to acces the email
+		JPasswordField pwd = new JPasswordField(10);
+		int action = JOptionPane.showConfirmDialog(null, pwd, "Enter Password",
+				JOptionPane.OK_CANCEL_OPTION);
+		if (action < 0) {
+			JOptionPane.showMessageDialog(null,
+					"Cancel, X or escape key selected");
+
+		} else
+		// updates the password string with the inputed password
+		password = new String(pwd.getPassword());
+
+		
+		// Set Property with user name and password for authentication
+		props.setProperty("mail.user", username);
+		props.setProperty("mail.password", password);
+
+		return props;
+
+	}
+
+	/**Starts the session
+	 * @param props Property object
+	 * @return a IMAPFolder object containing the selected folder with all the emails
+	 * @throws IOException
+	 * @throws MessagingException
+	 */
+	public static IMAPFolder startSession(Properties props) throws IOException,
+
+	MessagingException {
+		System.out
+				.println("-------------------------------------Start the Seession--------------------------------------");
+		
+		// creates a new Session object using the parameter props
+		Session session = Session.getDefaultInstance(props);
+
+		try {
+			//Gets the Store object from the mail session, connecting it to the imaps server using the inputed user name and password	
+			store = session.getStore("imaps");
+			store.connect("imap.googlemail.com", username, password);
+
+			//choose a selected folder where emails are stored
+			folder = (IMAPFolder) store.getFolder("inbox");
+
+			//Opens the folder
+			if (!folder.isOpen())
+				folder.open(Folder.READ_WRITE);
+
+		}
+
+		finally {
+
+		}
+
+		return folder;
+	}
+
+	/** Returns the Spam folder from the email
+	 * @param props
+	 * @return
+	 * @throws IOException
+	 * @throws MessagingException
+	 */
+	public static IMAPFolder getSpamFolder(Properties props)
+			throws IOException,
+
+			MessagingException {
+		System.out
+				.println("-------------------------------------Getting the Spam---------------------------------------");
+		Session session = Session.getDefaultInstance(props);
+
+		try {
+			//connects the store the session
+			store = session.getStore("imaps");
+			store.connect("imap.googlemail.com", username, password);
+
+			// Step 3: Choose a folder, in this case, we chose your inbox
+			spamFolder = (IMAPFolder) store.getFolder("[Gmail]/Spam");
+
+			// Step 4: Open the folder
+			if (!spamFolder.isOpen())
+				spamFolder.open(Folder.READ_WRITE);
+
+		}
+
+		finally {
+
+		}
+
+		return spamFolder;
+	}
+
+	/**
+	 * @param props
+	 * @return
+	 * @throws IOException
+	 * @throws MessagingException
+	 */
+	public static IMAPFolder getRecentFolder(Properties props)
+			throws IOException,
+
+			MessagingException {
+		System.out
+				.println("-------------------------------------Getting the Recent---------------------------------------");
+		Session session = Session.getDefaultInstance(props);
+
+		try {
+			// Step 2: Get the Store object from the mail session
+			// A store needs to connect to the IMAP server
+			store = session.getStore("imaps");
+			store.connect("imap.googlemail.com", username, password);
+
+			// Step 3: Choose a folder, in this case, we chose your inbox
+			recentFolder = (IMAPFolder) store.getFolder("[Gmail]/Recent");
+
+			// Step 4: Open the folder
+			if (!recentFolder.isOpen())
+				recentFolder.open(Folder.READ_WRITE);
+
+		}
+
+		finally {
+
+		}
+
+		return recentFolder;
+	}
+
+	/**
+	 * @param props
+	 * @return
+	 * @throws IOException
+	 * @throws MessagingException
+	 */
+	public static IMAPFolder getInboxFolder(Properties props)
+			throws IOException,
+
+			MessagingException {
+		System.out
+				.println("-------------------------------------Getting the InboX---------------------------------------");
+		Session session = Session.getDefaultInstance(props);
+
+		try {
+			// Step 2: Get the Store object from the mail session
+			// A store needs to connect to the IMAP server
+			store = session.getStore("imaps");
+			store.connect("imap.googlemail.com", username, password);
+
+			// Step 3: Choose a folder, in this case, we chose your inbox
+			inboxFolder = (IMAPFolder) store.getFolder("inbox");
+
+			// Step 4: Open the folder
+			if (!inboxFolder.isOpen())
+				inboxFolder.open(Folder.READ_WRITE);
+
+		}
+
+		finally {
+
+		}
+
+		return inboxFolder;
+	}
+
+	/**
+	 * @param folder1
+	 */
+	public static void setFolder(IMAPFolder folder1) {
+		folder = folder1;
+
+	}
+
+	/**
+	 * @param folder
+	 * @param i
+	 * @return
+	 * @throws MessagingException
+	 */
+	public static Boolean returnFlags(IMAPFolder folder, int i)
+			throws MessagingException {
+		System.out
+				.println("---------------------------------------Return flags--------------------------------------------");
+
+		Message message = folder.getMessage(i + 1);
+		Flags mes_flag = message.getFlags();
+		// System.out.println("Has this message been read?  " +
+		// mes_flag.contains(Flag.SEEN));
+
+		return mes_flag.contains(Flag.SEEN);
+	}
+
+	/**
+	 * @param folder
+	 * @return
+	 * @throws MessagingException
+	 */
+	public static Message[] returnMesages(IMAPFolder folder)
+			throws MessagingException {
+		System.out
+				.println("---------------------------------------Return flags--------------------------------------------");
+
+		Message[] message = folder.getMessages();
+		// Flags mes_flag = message.getFlags();
+		// System.out.println("Has this message been read?  " +
+		// mes_flag.contains(Flag.SEEN));
+
+		return message;
+	}
+
+	/**
+	 * @param i
+	 */
+	public static void deleteMessage(int i) {
+		try {
+			messages[i].setFlag(Flags.Flag.DELETED, true);
+			System.out.println("deleted mail");
+		} catch (MessagingException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @param folder
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
+	public static void Messages(IMAPFolder folder) throws MessagingException,
+			IOException {
+		System.out
+				.println("---------------------------------------Open Messages-------------------------------------------");
+		// Step 5: Get messages from the folder
+		// Get total number of message
+		System.out.println("No of Messages : " + folder.getMessageCount());
+		// Get total number of unread message
+		System.out.println("No of Unread Messages : "
+				+ folder.getUnreadMessageCount());
+
+		int count = 0;
+		Message messages[] = folder.getMessages();
+
+		// Get all messages
+		for (Message message : messages) {
+			count++;
+			Flags mes_flag = message.getFlags();
+			// Get subject of each message
+			System.out.println("The " + count + "th message is: "
+					+ message.getSubject());
+			// System.out.println(message.getContentType());
+			if (message.getContentType().contains("TEXT/PLAIN")) {
+				System.out.println(message.getContent());
+			} else {
+				// How to get parts from multiple body parts of MIME message
+				// Multipart multipart = (Multipart) message.getContent();
+				// System.out.println("-----------" + multipart.getCount()
+				// + "----------------");
+				// for (int x = 0; x < multipart.getCount(); x++) {
+				// BodyPart bodyPart = multipart.getBodyPart(x);
+				// // If the part is a plan text message, then print it out.
+				// if (bodyPart.getContentType().contains("TEXT/PLAIN")) {
+				// System.out.println(bodyPart.getContentType());
+				// System.out.println(bodyPart.getContent().toString());
+				// }
+				//
+				// }
+				// }
+				//
+				// // System.out.println("Has this message been read?  "
+				// // + mes_flag.contains(Flag.SEEN));
+				//
+				//
+				//
+				// }
+				//
+			}
+		}
+	}
+
+	/**
+	 * @return
+	 */
+	public static Store getSore() {
+		return store;
+
+	}
+
+	/**
+	 * @return
+	 */
+	public static String getPassword() {
+		return password;
+	}
+
+	/**
+	 * @return
+	 */
+	public static String getUsername() {
+		return username;
+	}
+}

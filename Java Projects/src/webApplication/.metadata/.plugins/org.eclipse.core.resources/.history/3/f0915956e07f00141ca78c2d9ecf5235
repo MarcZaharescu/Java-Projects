@@ -1,0 +1,66 @@
+package email;
+
+
+import javax.mail.Session;
+
+public class SMTPMail {
+	
+
+	private Session session;
+	private String username;
+	private String password;
+	private String SMTPhost;
+    private Properties properties;
+
+    /**
+     * username and password are obtained, creates a connection to the server.
+     * @param username from login
+     * @param password from login
+     */
+	public SMTPMail(String username,String password) {
+		this.username = username;
+		this.password = password;
+		SMTPhost = "smtp.gmail.com";
+
+		properties = System.getProperties();
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.starttls.enable", "true");
+		properties.put("mail.smtp.host", SMTPhost);
+		properties.put("mail.smtp.port", "587");
+
+		session = Session.getDefaultInstance(properties);
+	}
+
+    /**
+     * Gets the session 
+     * @return session
+     */
+    public Session getSession() {
+        return session;
+    }
+
+    /**
+     * Gets the username 
+     * @return email address
+     */
+    public String getSender() {
+        return username;
+    }
+
+    /**
+     * Gets SMTP host
+     * @return The SMTP host
+     */
+    public String getSMTPhost() {
+        return SMTPhost;
+    }
+
+    /**
+     * Gets the password 
+     * @return password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+}

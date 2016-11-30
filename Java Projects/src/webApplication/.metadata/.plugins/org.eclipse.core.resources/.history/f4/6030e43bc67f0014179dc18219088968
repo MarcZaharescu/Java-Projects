@@ -1,0 +1,82 @@
+package email;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class DemoServlet
+ */
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	public String username;
+	public String password;
+	
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+//	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+//			throws ServletException, IOException {
+//		//response.sendRedirect("FirstLogin.jsp");
+//		
+//	
+//	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+		
+		username = request.getParameter("element_1");
+		System.out.println("Login attempted : ");
+		System.out.println(username);
+		password = request.getParameter("element_2");
+		
+		boolean authorised = doAuthentication(username,password);
+		
+		Cookie cookieUsername = new Cookie("username", username);
+		Cookie cookiePassword = new Cookie("password", password);
+		
+		response.addCookie(cookieUsername);
+		response.addCookie(cookiePassword);
+		
+		if(authorised)	{
+			response.sendRedirect("LoginSuccessful.jsp");
+			System.out.println("redirecting to login success page");
+			
+		}else	{
+			response.sendRedirect("LoginUnSuccessful.jsp");
+			System.out.println("redirecting to login fail page");
+		}
+		
+	}
+	
+	private boolean doAuthentication(String username, String password){
+		
+		
+		IMAPClient imapClient = new IMAPClient(username, password);
+		imapClient.connectIMAP();
+		if(imapClient.connectIMAP()){
+			System.out.println("Login Successful");
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+}

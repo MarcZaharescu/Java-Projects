@@ -1,0 +1,103 @@
+import java.awt.EventQueue;
+
+import javax.mail.MessagingException;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.text.JTextComponent;
+
+import com.sun.mail.imap.IMAPFolder;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.Properties;
+
+import javaMailExample.IMAPClient;
+import java.awt.Color;
+
+
+public class Interface {
+
+	private JFrame frame;
+	private String username;
+	protected Properties prop;
+	private JButton btnButtonLogin;
+	protected IMAPFolder folder;
+	protected GUI gui;
+	private JTextField usernameField;
+	//protected String[] //subjectName;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Interface window = new Interface();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Interface() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(getButtonLogin());
+	
+		JLabel lblUsername = new JLabel("username:");
+		lblUsername.setBounds(54, 112, 67, 14);
+		frame.getContentPane().add(lblUsername);
+		
+		usernameField = new JTextField();
+		usernameField.setBounds(131, 102, 218, 34);
+		frame.getContentPane().add(usernameField);
+		usernameField.setColumns(10);
+	}
+	
+	
+	private JButton getButtonLogin() {
+		if (btnButtonLogin == null) {
+			btnButtonLogin = new JButton("log in");
+			btnButtonLogin.setBounds(131, 165, 218, 54);;
+			btnButtonLogin.addActionListener(new ActionListener() {
+				private String password;
+
+				public void actionPerformed(ActionEvent e) {
+					username=usernameField.getText();
+					prop=IMAPClient.setConnection(username);						
+					 password=IMAPClient.getPassword();
+					try {
+					
+						gui = new GUI();
+						
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnButtonLogin;
+	}
+
+	
+	
+}

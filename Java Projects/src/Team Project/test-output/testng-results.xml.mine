@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="564169" started-at="2015-03-22T16:23:10Z" finished-at="2015-03-22T16:32:34Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="564169" started-at="2015-03-22T16:23:10Z" finished-at="2015-03-22T16:32:34Z">
+      <class name="test.AITest">
+        <test-method status="PASS" signature="setUP()[pri:0, instance:test.AITest@33e5ccce]" name="setUP" is-config="true" duration-ms="605" started-at="2015-03-22T16:23:10Z" finished-at="2015-03-22T16:23:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUP -->
+        <test-method status="PASS" signature="testNormal()[pri:0, instance:test.AITest@33e5ccce]" name="testNormal" duration-ms="563514" started-at="2015-03-22T16:23:11Z" finished-at="2015-03-22T16:32:34Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testNormal -->
+      </class> <!-- test.AITest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

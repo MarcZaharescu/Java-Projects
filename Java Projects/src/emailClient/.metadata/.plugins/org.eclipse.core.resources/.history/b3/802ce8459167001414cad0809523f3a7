@@ -1,0 +1,87 @@
+
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Observable;
+import java.util.Set;
+
+import javax.mail.MessagingException;
+
+import javaMailExample.IMAPClient;
+
+
+/**
+ * The DictionaryModel class extends observable and creates a model of the
+ * chosen implementation of the Dictionary
+ * 
+ * @author mxz301
+ * 
+ */
+public class MailModel extends Observable {
+	private String s = "";
+	private IMAPClient oxo;
+	private Set<String> set;
+	private String dictionaryWord;
+	private Iterator<String> iterator;
+	private int index = 0;
+	private StringBuffer existedWords = new StringBuffer();
+
+	/**
+	 * The constructor initialises the object
+	 * 
+	 * @param oxo
+	 *            a DictionaryListImpl object
+	 */
+	public MailModel(IMAPClient oxo) {
+		super();
+		this.oxo = oxo;
+	}
+
+	/**
+	 * SignatureToWOrds method
+	 * 
+	 * @param signature
+	 *            , aStrign signature
+	 * @return a string which represents the word of the dictionary which has a
+	 *         certain signature
+	 * @throws IOException
+	 */
+	
+	
+	public void remove() {
+
+		
+		StringBuffer remove = new StringBuffer();
+		
+		for (int i = 0; i < s.length() - 1; i++)
+			remove.append(s.charAt(i));
+
+		s = remove.toString();
+	}
+
+	/**
+	 * Update() method sets changes and notifies observers
+	 */
+	public void update() {
+		setChanged();
+		notifyObservers();
+	}
+
+
+
+	public void mailSubjects() throws MessagingException {
+		
+	String[] messages=	oxo.getEmailSubjects();
+	StringBuffer subjects = new StringBuffer();
+	
+	for (int i = 0; i <5; i++)
+		subjects.append(messages[i]+"        ");
+	
+	s=subjects.toString();
+	
+	
+
+	
+		
+	}
+}

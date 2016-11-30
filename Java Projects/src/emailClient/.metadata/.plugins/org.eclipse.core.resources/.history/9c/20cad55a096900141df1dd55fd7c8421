@@ -1,0 +1,39 @@
+
+import java.io.IOException;
+import javaMailExample.IMAPClient;
+
+import javax.swing.JFrame;
+
+
+/**
+ * The GUI class interface
+ * 
+ * @author mxz301
+ * 
+ */
+public class MailGUI {
+	public static void main(String[] args) throws IOException {
+		// creates an object of DictionaryListImplement
+		// I have chosen this way of implementation because a binary search is
+		// performed in order to get the first signatures, so the final outcome
+		// is very efficient
+		// We don` t have to create a structure of the dictionary, every element
+		// is being put inside a HashMap of a specific key so our
+		// SignatureToWords function
+		// gets all the required elements almost instantly.
+		IMAPClient data = new IMAPClient();
+
+		MailComponent comp = new MailComponent(data);
+
+		// creates the frame of the interface
+		JFrame frame = new JFrame("Data Base");
+		frame.setSize(400, 400);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// adds the DictionaryComponent on the frame
+		frame.add(comp);
+
+		// Sets the visibility of the frame to true
+		frame.setVisible(true);
+	}
+}

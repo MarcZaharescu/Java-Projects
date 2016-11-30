@@ -1,0 +1,358 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.EventQueue;
+import java.awt.Rectangle;
+
+import javax.mail.MessagingException;
+import javax.swing.BorderFactory;
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.Properties;
+
+import javaMailExample.IMAPClient;
+
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+
+import com.sun.mail.imap.IMAPFolder;
+
+import javax.swing.JScrollBar;
+import javax.swing.border.Border;
+import javax.swing.JTextPane;
+
+public class GUI {
+
+	private JFrame frame;
+	private JTextField usernameField;
+	private JTextArea contentList;
+	private DefaultListModel listModel = new DefaultListModel();
+	//private DefaultListModel contentModel = new DefaultListModel();
+	private static IMAPClient client = new IMAPClient();
+	private JList<?> subjectList;
+private String contentModel;
+	private JButton btnButton1;
+	private JButton btnButton2;
+	private JButton btnButton3;
+	private JButton btnButtonLogin;
+	private JButton btnButtonExit;
+	private JScrollPane scrollPanel;
+	private JLabel username_label;
+	private String username;
+	private Properties prop;
+	private IMAPFolder folder;
+    private String[] subjectName;
+    private String[] content;
+    private Border brd = BorderFactory.createMatteBorder(1, 1, 1, 1, Color.BLACK);
+    private JScrollPane scrollDown;
+    private JScrollPane scrollPane_1;
+	private static int keyPosition;
+	private static boolean keyValue;
+	/**
+	 * Launch the application.
+	 * 
+	 * @throws MessagingException
+	 */
+	public static void main(String[] args) throws MessagingException {
+
+		// String subejct[]=IMAPClient.getEmailSubjects();
+         
+		//client.setConnection(textField);
+		
+		
+		EventQueue.invokeLater(new Runnable() {
+
+			public void run() {
+				try {
+					GUI window = new GUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 * @throws MessagingException 
+	 */
+	public GUI() throws MessagingException {
+		initialize();
+	
+	
+	
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		// setTitle("EMail application");
+		frame = new JFrame();
+		frame.setBounds(100, 100, 798, 539);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+
+		frame.getContentPane().add(getUserNameField());
+	    frame.getContentPane().add(getUserNameLabel());
+		
+	    
+	   
+	    
+	    frame.getContentPane().add(getButton1());
+		frame.getContentPane().add(getButton2());
+		frame.getContentPane().add(getButton3());
+		frame.getContentPane().add(getButtonExit());
+		
+
+		frame.getContentPane().add(getButtonLogin());
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(232, 141, 394, 252);
+		frame.getContentPane().add(scrollPane);
+		scrollPane.setViewportView(getContentList());
+		frame.getContentPane().add(getScrollPane_1());
+
+	
+		
+		//frame.getContentPane().add(scrollDown,BorderLayout.CENTER);
+
+		
+		
+		
+		
+		//frame.get
+	}
+
+	private JTextField getUserNameField() {
+		if (usernameField == null) {
+
+			usernameField = new JTextField();
+			usernameField.setBounds(274, 40, 173, 20);
+
+			usernameField.setColumns(10);
+			this.username=usernameField.getText();
+			
+			
+		}
+		return usernameField;
+
+	}
+	
+
+	private JLabel getUserNameLabel() {
+		if (username_label == null) {
+
+	username_label = new JLabel("username: ");
+    username_label.setBounds(197, 40, 67, 20);
+		}
+		
+		return username_label;
+	}
+	
+	
+	
+	private JButton getButton1() {
+		if (btnButton1 == null) {
+			btnButton1 = new JButton("AddSubject");
+			btnButton1.setBounds(232, 71, 87, 40);
+			btnButton1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+       
+					for(int i =0 ;i<subjectName.length;i++)
+					{
+						try{
+							listModel.addElement(subjectName[i].toString());
+						}
+					
+						
+						catch (NullPointerException e1) {
+							// TODO Auto-generated catch block
+							//e1.printStackTrace();
+						
+						}
+					}
+					subjectList.setModel(listModel);
+					//scrollPanel.add(subjectList);
+				 final MyListRender render = new MyListRender();
+				  subjectList.setCellRenderer( render ); 
+					
+					
+					 
+					
+					subjectList.addMouseListener(new MouseAdapter() {
+					    public void mouseClicked(MouseEvent evt) {
+					    	contentList.removeAll();
+					        JList subjectList = (JList)evt.getSource();
+					        if (evt.getClickCount() == 1) {
+					        	 int index = subjectList.locationToIndex(evt.getPoint());
+					        	try {
+									String content1 = IMAPClient.getEmailContent(folder, index);
+									contentModel=(content1.toString());
+									contentList.setText(contentModel);
+									setKey(IMAPClient.returnFlags(folder, index));
+								     setKeyPosition(index);
+								   
+								   //   listComponents[1].setBackground(Color.red);
+									//System.out.println(IMAPClient.returnFlags(folder, index));
+						            
+								} catch (MessagingException | IOException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+					        	
+					        } 
+					    }
+					});
+					
+					
+					//dlmodel.removeAllElements();
+					// subjectList.add(list.getText());
+				}
+			});
+
+		}
+
+		return btnButton1;
+
+	}
+	
+	
+	
+
+	private JButton getButton2() {
+		if (btnButton2 == null) {
+			btnButton2 = new JButton("Button2");
+			btnButton2.setBounds(329, 71, 87, 40);
+			btnButton2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+		}
+		return btnButton2;
+	}
+
+	private JButton getButton3() {
+		if (btnButton3 == null) {
+			btnButton3 = new JButton("Button3");
+			btnButton3.setBounds(437, 71, 87, 40);
+			btnButton3.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+				}
+			});
+		}
+		return btnButton3;
+	}
+
+	private JButton getButtonExit() {
+		if (btnButtonExit == null) {
+			btnButtonExit = new JButton("Exit");
+			btnButtonExit.setBounds(559, 450, 87, 40);
+			btnButtonExit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);
+				}
+			});
+			
+		}
+		return btnButtonExit;
+	}
+
+	private JButton getButtonLogin() {
+		if (btnButtonLogin == null) {
+			btnButtonLogin = new JButton("log in");
+			btnButtonLogin.setBounds(471, 39, 89, 23);
+			btnButtonLogin.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					username=usernameField.getText();
+					 prop=IMAPClient.setConnection(username);
+					try {
+						folder=IMAPClient.startSession(prop);
+						subjectName=IMAPClient.getEmailSubjects(folder);
+						
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (MessagingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			});
+		}
+		return btnButtonLogin;
+	}
+
+	private JList<?> getSubjectList() {
+		if (subjectList == null) {
+			subjectList = new JList(listModel);
+			subjectList.setBorder(brd);
+			
+			
+
+		}
+		return subjectList;
+
+	}
+	private JTextArea getContentList() {
+		if (contentList == null) {
+			contentList = new JTextArea();
+			contentList.setBorder(brd);
+//			scrollDown = new JScrollPane(contentList);
+//			
+//			scrollDown.setBounds(160, 125, 100, 33);
+//			 scrollDown.setLayout(null);
+//		     scrollDown.setVisible(true);
+		      
+			
+
+		}
+		return contentList;
+
+	}
+	private JScrollPane getScrollPane_1() {
+		if (scrollPane_1 == null) {
+			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBounds(43, 141, 117, 251);
+			scrollPane_1.setViewportView(getSubjectList());
+		}
+		return scrollPane_1;
+	}
+	
+	public  void setKey(boolean keyValue)
+	{
+		
+		this.keyValue=keyValue;
+	}
+
+	public static boolean geKey() {
+		// TODO Auto-generated method stub
+		return keyValue;
+	}
+	
+	public  void setKeyPosition(int keyPosition)
+	{
+		
+		this.keyPosition=keyPosition;
+	}
+
+	public static int geKeyPosition() {
+		// TODO Auto-generated method stub
+		return keyPosition;
+	}
+	
+}

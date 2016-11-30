@@ -1,0 +1,100 @@
+package test;
+
+import gameServer.Server;
+import gameServer.ServerClient;
+
+import java.io.File;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Random;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import java.security.SecureRandom;
+
+/**
+ * Class that contains tests for the Networking module
+ * @author jxr227
+ *
+ */
+public class NetworkTest {
+
+	private Server server;
+	private ArrayList<ServerClient> clients = new ArrayList<ServerClient>();
+	
+
+	/**
+	 * Code taken from erickson on StackOverflow
+	 * http://stackoverflow.com/questions/41107/how-to-generate-a-random-alpha-numeric-string
+	 */
+	  private SecureRandom random = new SecureRandom();
+	  public String randString() {
+	    return new BigInteger(130, random).toString(32);
+	  }
+
+	@BeforeMethod
+	public void setUp() {
+		server = new Server(1234, null, "img" + File.separator + "bitmap1");
+		String[] roles = new String[] { "NORMAL", "ATTACKER", "TANK", "HEALER" };
+		Random rand = new Random();
+
+		for (int i = 0; i < 8; i++) {
+			clients.add(new ServerClient("127.0.0.1", 1234, "Player" + i,
+					roles[rand.nextInt(roles.length)]));
+		}
+	}
+
+	@AfterMethod
+	public void restart() {
+		server.stop();
+		for (ServerClient client : clients) {
+			client.stop();
+		}
+	}
+
+	@Test
+	public void testServerClient() {
+		String accumulativePlayers = "PLAYERS";
+		int counter = 0;
+
+		/*
+		 * The following will test that all players Are sent the correct
+		 * information including The accumulative list of players that is sent
+		 * To all players after a new player connects
+		 */
+		for (ServerClient client : clients) {
+			Assert.assertEquals(client.serverUpdates(), "ID\t" + counter
+					+ "\timg"+File.separator +"bitmap1");
+			Assert.assertEquals(client.serverUpdates(), "ID\t" + counter);
+			accumulativePlayers += "\t" + counter + "\t" + "Player" + counter
+					+ "\t" + ServerClient.getRole() + "\t" + (counter % 2);
+			for (int i = 0; i <= counter; i++) {
+				Assert.assertEquals(clients.get(i).serverUpdates(),
+						accumulativePlayers);
+			}
+			counter++;
+		}
+		
+		/*
+		 * Next will test that all clients receive the same messages
+		 * from the server. 10,000 tests, because we can.
+		 */
+		
+		String generatedString;
+		for(int i = 0; i<10000;i++){
+			generatedString = randString();
+			server.handle(generatedString);
+			for(ServerClient client: clients){
+				Assert.assertEquals(client.serverUpdates(), generatedString);
+			}
+		}
+	}
+	
+	
+	
+
+
+}

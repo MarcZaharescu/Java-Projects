@@ -1,0 +1,202 @@
+package predictivegui;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Observable;
+import java.util.Set;
+import predictive.DictionaryListImpl;
+
+
+/**
+ * The DictionaryModel class extends observable and creates a model of the
+ * chosen implementation of the Dictionary
+ * 
+ * @author mxz301
+ * 
+ */
+public class DictionaryModel extends Observable {
+	private String s = "";
+	private DictionaryListImpl oxo;
+	private Set<String> set;
+	private String dictionaryWord;
+	private Iterator<String> iterator;
+	private int index = 0;
+	private StringBuffer existedWords = new StringBuffer();
+
+	/**
+	 * The constructor initialises the object
+	 * 
+	 * @param oxo
+	 *            a DictionaryListImpl object
+	 */
+	public DictionaryModel(DictionaryListImpl oxo) {
+		super();
+		this.oxo = oxo;
+	}
+
+	/**
+	 * SignatureToWOrds method
+	 * 
+	 * @param signature
+	 *            , aStrign signature
+	 * @return a string which represents the word of the dictionary which has a
+	 *         certain signature
+	 * @throws IOException
+	 */
+	public String signatureToWords(String signature) throws IOException {
+
+		// Here I had an issue, if I had chosen the number 2 as a signature
+		// initially it would give me an exception error,
+		// so for this case only I fixed as shown below
+
+		if (Integer.valueOf(signature) == 2 && (index == 0 || index == 3)) {
+			if (index == 3)
+				index = 0;
+			return "a";
+		}
+
+		if (Integer.valueOf(signature) == 2 && index == 1)
+			return "b";
+		if (Integer.valueOf(signature) == 2 && index == 2) {
+			return "c";
+
+		}
+
+		// If the signature is too big, or too low to be a word of the
+		// dictionary just return "No Words"
+		if (Integer.valueOf(signature) > 999999
+				|| Integer.valueOf(signature) < 0) {
+			System.out.println("No words with the signature " + signature);
+			return "No Words";
+		}
+
+		// a set receives all the words from the DictionaryListImpl with a
+		// certain signature
+		set = oxo.signatureToWords(s);
+		// I am using an Iterator to loop through the set
+
+		Iterator<String> it = set.iterator();
+		if (index == 0)
+			iterator = it;
+
+		// the index it increases whenever the user presses the "*" button so
+		// the position of the iterator changes accordingly
+		for (int j = 0; j < index; j++) {
+			if (it.hasNext())
+				it.next();
+		}
+		// this statement makes the button to cycle around, so if the user keeps
+		// pressing the "*" when it reaches the end of the set,
+		// the position of the iterator is being reseted to the start
+		if (index == set.size()) {
+			it = iterator;
+			index = 0;
+
+		}
+
+		// the String dictionaryWord receives the certain element form the set
+		if (it.hasNext()) {
+			dictionaryWord = it.next().toString();
+			System.out.println(dictionaryWord);
+
+		}
+		// returns the word
+		return dictionaryWord;
+
+	}
+
+	/**
+	 * Remove() method removes one letter from the signature
+	 */
+	public void remove() {
+
+		// creates a new StringBuffer object
+		StringBuffer remove = new StringBuffer();
+		// loops from the beginning of the string s (which contains the current
+		// signature), to the end position-1
+		// We append each letter of the string to the remove so that in the end
+		// remove has one letter less than s
+		for (int i = 0; i < s.length() - 1; i++)
+			remove.append(s.charAt(i));
+
+		// s receives the remove StringBuffer
+		s = remove.toString();
+	}
+
+	/**
+	 * getWord() method, appends the new button value to the current signature
+	 * 
+	 * @param string
+	 *            a String string
+	 * @return the current signature appended with the parameter signature
+	 */
+	public String getWord(String string) {
+
+		s = s + string;
+
+		return s;
+
+	}
+
+	/**
+	 * getNext method() increases the index size, so that the next element from
+	 * the set will be returned sets the Changes and notifies the Observers
+	 */
+	public void getNextWord() {
+		index++;
+		setChanged();
+		notifyObservers();
+
+	}
+
+	/**
+	 * getDictionary() method
+	 * 
+	 * @return a String which contains all the words which have been shown on
+	 *         the screen so far
+	 */
+	public String getDictionaryWord() {
+		return this.dictionaryWord;
+	}
+
+	/**
+	 * resetWord() method, resets the current string and index
+	 * 
+	 * @param text
+	 *            a String Text
+	 */
+	public void resetWord(String text) {
+
+		// add to the existedWords the current one
+		existedWords.append(getDictionaryWord());
+		existedWords.append(" ");
+		// sets the string which contains all current signature to empty
+		s = "";
+		// sets the index to 0
+		index = 0;
+
+		// sets changes and notifies observers
+		setChanged();
+		notifyObservers();
+		// System.out.println(s);
+
+	}
+
+	/**
+	 * getExistedWords() method
+	 * 
+	 * @return a String, containing all the existed words so far
+	 */
+	public String getExistedWords() {
+
+		return this.existedWords.toString();
+	}
+
+	/**
+	 * Update() method sets changes and notifies observers
+	 */
+	public void update() {
+		setChanged();
+		notifyObservers();
+	}
+}
